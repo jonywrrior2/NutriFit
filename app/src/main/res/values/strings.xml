@@ -3,4 +3,7 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="tiene_ya_una_cuenta_creada">¿Tiene ya una cuenta creada?</string>
+    <string name="login">LOGIN</string>
+    <string name="ha_olvidado_su_contrase_a">¿HA OLVIDADO SU CONTRASEÑA?</string>
+    <string name="o">O Iniciar Sesion Con</string>
 </resources>
