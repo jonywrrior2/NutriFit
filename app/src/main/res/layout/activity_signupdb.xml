@@ -88,8 +88,8 @@
         android:textColorHint="@color/white"
         android:tooltipText="Peso (en kilogramos)"/>
 
-    <EditText
-        android:id="@+id/objetivoTxt"
+    <Spinner
+        android:id="@+id/objetivoSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/pesoTxt"
@@ -98,18 +98,15 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:background="#30ffffff"
-        android:drawablePadding="20dp"
-        android:hint="@string/objetivo"
-
         android:padding="20dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        android:textColor="@color/white" />
+
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="398dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/objetivoTxt"
+        android:layout_below="@+id/objetivoSpinner"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="5dp"

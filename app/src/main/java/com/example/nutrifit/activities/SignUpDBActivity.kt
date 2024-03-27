@@ -12,6 +12,7 @@ import com.example.nutrifit.databinding.ActivitySignupdbBinding
 class SignUpDBActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignupdbBinding
     private lateinit var factorActividadSpinner: Spinner
+    private lateinit var objetivoSpinner: Spinner
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,6 +47,30 @@ class SignUpDBActivity : AppCompatActivity() {
             override fun onNothingSelected(parent: AdapterView<*>) {
                 //TODO Manejar la situación en la que no se selecciona nada
             }
+
         }
+        objetivoSpinner = findViewById(R.id.objetivoSpinner)
+
+        // Crear un ArrayAdapter usando el array de strings definido en strings.xml para Objetivo
+        val objetivoAdapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.array_objetivo,
+            R.layout.spinner_item_layout
+        )
+        objetivoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        objetivoSpinner.adapter = objetivoAdapter
+
+        // Manejar la selección del Spinner de Objetivo
+        objetivoSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                val selectedObjetivo = parent.getItemAtPosition(position).toString()
+                // Aquí puedes hacer algo con el objetivo seleccionado
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // Manejar la situación en la que no se selecciona nada
+            }
+        }
+
     }
 }
