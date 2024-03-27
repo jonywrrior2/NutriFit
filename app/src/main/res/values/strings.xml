@@ -6,4 +6,34 @@
     <string name="login">LOGIN</string>
     <string name="ha_olvidado_su_contrase_a">¿HA OLVIDADO SU CONTRASEÑA?</string>
     <string name="o">O Iniciar Sesion Con</string>
+    <string name="nombre">Nombre</string>
+    <string name="apellidos">Apellidos</string>
+    <string name="emailRegister">Email</string>
+    <string name="contrase_a">Contraseña</string>
+    <string name="continuar">Continuar</string>
+    <string name="datos_personales">Datos Personales</string>
+    <string name="nuevo_usuario_registrate_ahora">¿Nuevo Usuario? Registrate Ahora</string>
+    <string name="volver"> VOLVER</string>
+    <string name="datos_biom_tricos">Datos Biométricos</string>
+    <string name="edad">Edad</string>
+    <string name="factor_actividad">Nivel Actividad</string>
+    <string name="peso">Peso</string>
+    <string name="objetivo">Objetivo</string>
+    <string name="altura_cm">Altura (cm)</string>
+    <string name="peso_kg">peso (KG)</string>
+    <string-array name="factor_actividad_values">
+            <item>Poco o ningún ejercicio</item>
+            <item>Ejercicio ligero (1-3 días a la semana)</item>
+            <item>Ejercicio moderado (3-5 días a la semana)</item>
+            <item>Ejercicio fuerte (6-7 días a la semana)</item>
+            <item>Ejercicio muy fuerte (dos veces al día, entrenamientos muy duros)</item>
+        </string-array>
+
+    <string-array name="array_objetivo">
+        <item>Bajar peso</item>
+        <item>Subir peso</item>
+        <item>Recomposición corporal</item>
+    </string-array>
+
+
 </resources>

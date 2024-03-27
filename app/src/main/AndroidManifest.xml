@@ -40,6 +40,20 @@
             android:theme="@style/Theme.NutriFit">
 
         </activity>
+
+        <activity
+            android:name=".activities.SignUpDPActivity"
+            android:exported="true"
+            android:theme="@style/Theme.NutriFit">
+
+        </activity>
+
+        <activity
+            android:name=".activities.SignUpDBActivity"
+            android:exported="true"
+            android:theme="@style/Theme.NutriFit">
+
+        </activity>
     </application>
 
 </manifest>

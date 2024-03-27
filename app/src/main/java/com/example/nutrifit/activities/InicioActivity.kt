@@ -22,7 +22,7 @@ class InicioActivity : AppCompatActivity() {
         textViewNutriFit.startAnimation(scaleAnimation)
 
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this@InicioActivity, LoginActivity::class.java)
+            val intent = Intent(this@InicioActivity, SignUpDBActivity::class.java)
             startActivity(intent)
             finish()
         }, SPLASH_TIME_OUT)
