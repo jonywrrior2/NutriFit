@@ -55,7 +55,12 @@ dependencies {
 
 
 
-    // Implementacion de firebase
+    // Implementaciones de firebase
+
+    //Base de datos FB
     implementation("com.google.firebase:firebase-firestore:24.11.0")
+    //Biblioteca FB
     implementation(platform("com.google.firebase:firebase-bom:32.8.0"))
+    //FB authenticator
+    implementation("com.google.firebase:firebase-auth:22.3.1")
 }
