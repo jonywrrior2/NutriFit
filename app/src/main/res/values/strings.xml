@@ -24,6 +24,7 @@
     <string name="nivel_de_actividadlbl">Nivel de Actividad</string>
     <string name="recordar">recordar usuario</string>
     <string name="sexo">Sexo</string>
+    <string name="registrar">Registrar</string>
     <string-array name="factor_actividad_values">
             <item>Poco o ningún ejercicio</item>
             <item>Ejercicio ligero (1-3 días a la semana)</item>

@@ -129,7 +129,7 @@
 
 
         <Button
-            android:id="@+id/signupbtn"
+            android:id="@+id/continuarDB"
             android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
@@ -141,7 +141,7 @@
             android:textSize="25sp" />
 
         <Button
-            android:id="@+id/volver"
+            android:id="@+id/volverLG"
             android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"

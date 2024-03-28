@@ -1,11 +1,13 @@
 package com.example.nutrifit.activities
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import androidx.appcompat.app.AlertDialog
@@ -19,6 +21,7 @@ class SignUpDBActivity : AppCompatActivity() {
     private lateinit var objetivoSpinner: Spinner
     private lateinit var alturaTxt: EditText
     private lateinit var pesoTxt: EditText
+    private lateinit var btnVolver: Button
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -28,10 +31,17 @@ class SignUpDBActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        // Obtener referencia al Spinner de Factor de Actividad
+        // Obtener referencia a los componentes
         factorActividadSpinner = findViewById(R.id.factorActividadSpinner)
         alturaTxt = findViewById(R.id.alturaTxt)
         pesoTxt = findViewById(R.id.pesoTxt)
+         btnVolver = findViewById(R.id.volverDP)
+
+        // boton para volver a la activity anterior de datos personales
+        btnVolver.setOnClickListener{
+            val intent = Intent(this@SignUpDBActivity, SignUpDPActivity::class.java)
+            startActivity(intent)
+        }
 
         // Crear un ArrayAdapter usando el array de strings definido en strings.xml para Factor de Actividad
         val factorActividadAdapter = ArrayAdapter.createFromResource(
