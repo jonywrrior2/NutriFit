@@ -56,6 +56,13 @@
             android:theme="@style/Theme.NutriFit">
 
         </activity>
+
+        <activity
+            android:name=".activities.RecuperarPassActivity"
+            android:exported="true"
+            android:theme="@style/Theme.NutriFit">
+
+        </activity>
     </application>
 
 </manifest>

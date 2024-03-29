@@ -22,6 +22,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var swRecordar: SwitchCompat
     private lateinit var auth: FirebaseAuth
     private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var passOlvidada: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +40,7 @@ class LoginActivity : AppCompatActivity() {
         loginButton = findViewById(R.id.btnLogin)
         registerText = findViewById(R.id.registerText)
         swRecordar = findViewById(R.id.swRecordar)
+        passOlvidada = findViewById(R.id.passOlvidada)
 
         // Verificar si el Switch está activado en SharedPreferences
         val recordar = sharedPreferences.getBoolean("recordar", false)
@@ -56,6 +58,11 @@ class LoginActivity : AppCompatActivity() {
         // Evento para ir a la actividad de registro
         registerText.setOnClickListener {
             val intent = Intent(this@LoginActivity, SignUpDPActivity::class.java)
+            startActivity(intent)
+        }
+
+        passOlvidada.setOnClickListener {
+            val intent = Intent(this@LoginActivity, RecuperarPassActivity::class.java)
             startActivity(intent)
         }
 
