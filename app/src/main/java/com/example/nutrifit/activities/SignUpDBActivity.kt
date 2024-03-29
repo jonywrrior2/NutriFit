@@ -62,24 +62,48 @@ class SignUpDBActivity : AppCompatActivity() {
             val nivelActividad = binding.factorActividadSpinner.selectedItem.toString()
             val objetivo = binding.objetivoSpinner.selectedItem.toString()
 
-            // Verificar si los campos están completos
-            if (email != null && nombre != null && apellidos != null && contrasenha != null && sexo != null && edad > 0 && altura > 0 && peso > 0) {
-                // Crear el objeto User con todos los datos
-                val user = User(
-                    nombre,
-                    apellidos,
-                    email,
-                    contrasenha,
-                    edad,
-                    sexo,
-                    altura,
-                    peso,
-                    nivelActividad,
-                    objetivo
-                )
+            // Verificar si los campos están completos y dentro de los rangos
+            if (email != null && nombre != null && apellidos != null && contrasenha != null && sexo != null) {
+                if (altura in 100.0..250.0 ) {
+                    if (edad in 10..100) {
+                        if (peso in 20.0..200.0) {
+                            // Crear el objeto User con todos los datos
+                            val user = User(
+                                nombre,
+                                apellidos,
+                                email,
+                                contrasenha,
+                                edad,
+                                sexo,
+                                altura,
+                                peso,
+                                nivelActividad,
+                                objetivo
+                            )
 
-                // Registrar y autenticar al usuario
-                registrarYAutenticarUsuario(email, contrasenha, user)
+                            // Registrar y autenticar al usuario
+                            registrarYAutenticarUsuario(email, contrasenha, user)
+                        } else {
+                            Toast.makeText(
+                                this@SignUpDBActivity,
+                                "Por favor, introduce un peso válido entre 20 y 200 kg",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    } else {
+                        Toast.makeText(
+                            this@SignUpDBActivity,
+                            "Por favor, introduce una edad válida entre 10 y 100 años ",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                } else {
+                    Toast.makeText(
+                        this@SignUpDBActivity,
+                        "Por favor, introduce una altura válida entre 100 y 250 cm",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             } else {
                 Toast.makeText(
                     this@SignUpDBActivity,
