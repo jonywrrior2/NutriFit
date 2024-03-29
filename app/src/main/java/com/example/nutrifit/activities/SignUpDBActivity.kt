@@ -14,6 +14,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.nutrifit.R
 import com.example.nutrifit.databinding.ActivitySignupdbBinding
+import com.example.nutrifit.pojo.User
+import com.google.firebase.firestore.FirebaseFirestore
 
 class SignUpDBActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignupdbBinding
@@ -22,7 +24,8 @@ class SignUpDBActivity : AppCompatActivity() {
     private lateinit var alturaTxt: EditText
     private lateinit var pesoTxt: EditText
     private lateinit var btnVolver: Button
-
+    private lateinit var btnRegistar: Button
+    private lateinit var user: User
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,11 +38,19 @@ class SignUpDBActivity : AppCompatActivity() {
         factorActividadSpinner = findViewById(R.id.factorActividadSpinner)
         alturaTxt = findViewById(R.id.alturaTxt)
         pesoTxt = findViewById(R.id.pesoTxt)
-         btnVolver = findViewById(R.id.volverDP)
+        btnVolver = findViewById(R.id.volverDP)
+        btnRegistar = findViewById(R.id.signupbtn)
 
         // boton para volver a la activity anterior de datos personales
-        btnVolver.setOnClickListener{
+        btnVolver.setOnClickListener {
             val intent = Intent(this@SignUpDBActivity, SignUpDPActivity::class.java)
+            startActivity(intent)
+        }
+
+        btnRegistar.setOnClickListener {
+            val intent = Intent(this@SignUpDBActivity, LoginActivity::class.java)
+            user = intent.getSerializableExtra("user") as User
+            actualizarUsuarioEnFirestore(user)
             startActivity(intent)
         }
 
@@ -121,5 +132,22 @@ class SignUpDBActivity : AppCompatActivity() {
         val dialog = builder.create()
         dialog.show()
     }
-}
 
+    private fun actualizarUsuarioEnFirestore(usuario: User) {
+        val db = FirebaseFirestore.getInstance()
+        db.collection("usuarios").document(usuario.email).update(
+            "altura", usuario.altura,
+            "peso", usuario.peso,
+            "edad", usuario.edad,
+            "nivelActividad", usuario.nivelActividad,
+            "objetivo", usuario.objetivo
+            // Actualiza otros campos según sea necesario
+        )
+            .addOnSuccessListener {
+                // Éxito al actualizar el usuario en Firestore
+            }
+            .addOnFailureListener { e ->
+                // Error al actualizar el usuario en Firestore
+            }
+    }
+}

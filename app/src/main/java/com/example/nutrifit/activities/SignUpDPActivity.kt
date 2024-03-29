@@ -8,16 +8,22 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.nutrifit.R
 import com.example.nutrifit.databinding.ActivitySignupdpBinding
+import com.example.nutrifit.pojo.User
+import com.google.firebase.firestore.FirebaseFirestore
 
 
 class SignUpDPActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySignupdpBinding
     private lateinit var sexoSpinner: Spinner
-    private lateinit var btnVolver:Button
+    private lateinit var btnVolver: Button
+    private lateinit var btnContinuar: Button
+    private lateinit var user: User
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignupdpBinding.inflate(layoutInflater)
@@ -25,14 +31,37 @@ class SignUpDPActivity : AppCompatActivity() {
         setContentView(view)
 
         //referencia componentes
-         btnVolver = findViewById(R.id.volverLG)
+        btnVolver = findViewById(R.id.volverLG)
         sexoSpinner = findViewById(R.id.sexoSpinner)
+        btnContinuar = findViewById(R.id.continuarDB)
 
         //evento para volver a la activity de login
-        btnVolver.setOnClickListener{
+        btnVolver.setOnClickListener {
             val intent = Intent(this@SignUpDPActivity, LoginActivity::class.java)
             startActivity(intent)
         }
+
+        btnContinuar.setOnClickListener {
+            val email = binding.email.text.toString()
+            val nombre = binding.nombre.text.toString()
+            val apellidos = binding.apellidos.text.toString()
+            val contrasenha = binding.password.text.toString()
+            val sexo = binding.sexoSpinner.selectedItem.toString()
+
+            if (email.isNotEmpty() && nombre.isNotEmpty() && apellidos.isNotEmpty() && contrasenha.isNotEmpty()) {
+                val intent = Intent(this@SignUpDPActivity, SignUpDBActivity::class.java)
+                // Pasar los datos a la siguiente actividad
+                intent.putExtra("email", email)
+                intent.putExtra("nombre", nombre)
+                intent.putExtra("apellidos", apellidos)
+                intent.putExtra("contrasenha", contrasenha)
+                intent.putExtra("sexo", sexo)
+                startActivity(intent)
+            } else {
+                Toast.makeText(this@SignUpDPActivity, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show()
+            }
+        }
+
 
         val factorActividadAdapter = ArrayAdapter.createFromResource(
             this,
@@ -53,6 +82,17 @@ class SignUpDPActivity : AppCompatActivity() {
                 // Manejar la situación en la que no se selecciona nada
             }
         }
+    }
 
+
+    private fun guardarUsuarioEnFirestore(usuario: User) {
+        val db = FirebaseFirestore.getInstance()
+        db.collection("usuarios").document(usuario.email).set(usuario)
+            .addOnSuccessListener {
+                // Éxito al guardar el usuario en Firestore
+            }
+            .addOnFailureListener { e ->
+                // Error al guardar el usuario en Firestore
+            }
     }
 }
