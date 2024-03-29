@@ -10,11 +10,13 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.nutrifit.R
 import com.example.nutrifit.databinding.ActivitySignupdbBinding
 import com.example.nutrifit.pojo.User
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class SignUpDBActivity : AppCompatActivity() {
@@ -41,6 +43,12 @@ class SignUpDBActivity : AppCompatActivity() {
         btnVolver = findViewById(R.id.volverDP)
         btnRegistar = findViewById(R.id.signupbtn)
 
+        val email = intent.getStringExtra("email")
+        val nombre = intent.getStringExtra("nombre")
+        val apellidos = intent.getStringExtra("apellidos")
+        val contrasenha = intent.getStringExtra("contrasenha")
+        val sexo = intent.getStringExtra("sexo")
+
         // boton para volver a la activity anterior de datos personales
         btnVolver.setOnClickListener {
             val intent = Intent(this@SignUpDBActivity, SignUpDPActivity::class.java)
@@ -48,10 +56,38 @@ class SignUpDBActivity : AppCompatActivity() {
         }
 
         btnRegistar.setOnClickListener {
-            val intent = Intent(this@SignUpDBActivity, LoginActivity::class.java)
-            user = intent.getSerializableExtra("user") as User
-            actualizarUsuarioEnFirestore(user)
-            startActivity(intent)
+            // Obtener los datos adicionales del usuario
+            val edad = binding.edadTxt.text.toString().toIntOrNull() ?: 0
+            val altura = binding.alturaTxt.text.toString().toDoubleOrNull() ?: 0.0
+            val peso = binding.pesoTxt.text.toString().toDoubleOrNull() ?: 0.0
+            val nivelActividad = binding.factorActividadSpinner.selectedItem.toString()
+            val objetivo = binding.objetivoSpinner.selectedItem.toString()
+
+            // Verificar si los campos están completos
+            if (email != null && nombre != null && apellidos != null && contrasenha != null && sexo != null && edad > 0 && altura > 0 && peso > 0) {
+                // Crear el objeto User con todos los datos
+                val user = User(
+                    nombre,
+                    apellidos,
+                    email,
+                    contrasenha,
+                    edad,
+                    sexo,
+                    altura,
+                    peso,
+                    nivelActividad,
+                    objetivo
+                )
+
+                // Registrar y autenticar al usuario
+                registrarYAutenticarUsuario(email, contrasenha, user)
+            } else {
+                Toast.makeText(
+                    this@SignUpDBActivity,
+                    "Por favor, completa todos los campos correctamente",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
 
         // Crear un ArrayAdapter usando el array de strings definido en strings.xml para Factor de Actividad
@@ -64,16 +100,22 @@ class SignUpDBActivity : AppCompatActivity() {
         factorActividadSpinner.adapter = factorActividadAdapter
 
         // Manejar la selección del Spinner de Factor de Actividad
-        factorActividadSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                val selectedFactor = parent.getItemAtPosition(position).toString()
-                // Aquí puedes hacer algo con el factor de actividad seleccionado
-            }
+        factorActividadSpinner.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    val selectedFactor = parent.getItemAtPosition(position).toString()
+                    // Aquí puedes hacer algo con el factor de actividad seleccionado
+                }
 
-            override fun onNothingSelected(parent: AdapterView<*>) {
-                // Manejar la situación en la que no se selecciona nada
+                override fun onNothingSelected(parent: AdapterView<*>) {
+                    // Manejar la situación en la que no se selecciona nada
+                }
             }
-        }
 
         // Obtener referencia al Spinner de Objetivo
         objetivoSpinner = findViewById(R.id.objetivoSpinner)
@@ -89,7 +131,12 @@ class SignUpDBActivity : AppCompatActivity() {
 
         // Manejar la selección del Spinner de Objetivo
         objetivoSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
                 val selectedObjetivo = parent.getItemAtPosition(position).toString()
                 // Aquí puedes hacer algo con el objetivo seleccionado
             }
@@ -133,21 +180,52 @@ class SignUpDBActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    private fun actualizarUsuarioEnFirestore(usuario: User) {
+    private fun registrarYAutenticarUsuario(email: String, contrasenha: String, user: User) {
+        // Registrar al usuario en Firebase Authentication
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, contrasenha)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    // Registro exitoso, ahora guardamos el usuario en Firestore
+                    val firebaseUser = FirebaseAuth.getInstance().currentUser
+                    if (firebaseUser != null) {
+                        guardarUsuarioEnFirestore(user)
+                    } else {
+                        Toast.makeText(
+                            this@SignUpDBActivity,
+                            "Error: usuario actual nulo",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                } else {
+                    // Error en el registro
+                    Toast.makeText(
+                        this@SignUpDBActivity,
+                        "Error al registrar el usuario: ${task.exception?.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+    }
+
+    private fun guardarUsuarioEnFirestore(usuario: User) {
         val db = FirebaseFirestore.getInstance()
-        db.collection("usuarios").document(usuario.email).update(
-            "altura", usuario.altura,
-            "peso", usuario.peso,
-            "edad", usuario.edad,
-            "nivelActividad", usuario.nivelActividad,
-            "objetivo", usuario.objetivo
-            // Actualiza otros campos según sea necesario
-        )
+        db.collection("usuarios").document(usuario.email).set(usuario)
             .addOnSuccessListener {
-                // Éxito al actualizar el usuario en Firestore
+                Toast.makeText(
+                    this@SignUpDBActivity,
+                    "Usuario registrado exitosamente",
+                    Toast.LENGTH_SHORT
+                ).show()
+                // Éxito al guardar el usuario en Firestore
+                // Después de guardar el usuario en Firestore, puedes redirigir al usuario a otra actividad si es necesario
             }
             .addOnFailureListener { e ->
-                // Error al actualizar el usuario en Firestore
+                Toast.makeText(
+                    this@SignUpDBActivity,
+                    "Error al registrar el usuario en Firestore: ${e.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
+                // Error al guardar el usuario en Firestore
             }
     }
 }

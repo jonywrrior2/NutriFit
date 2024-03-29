@@ -1,14 +1,18 @@
 package com.example.nutrifit.activities
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.view.MotionEvent
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.nutrifit.R
 import com.example.nutrifit.databinding.ActivitySignupdpBinding
@@ -22,8 +26,10 @@ class SignUpDPActivity : AppCompatActivity() {
     private lateinit var sexoSpinner: Spinner
     private lateinit var btnVolver: Button
     private lateinit var btnContinuar: Button
+    private lateinit var contrasenha: EditText
     private lateinit var user: User
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignupdpBinding.inflate(layoutInflater)
@@ -34,6 +40,7 @@ class SignUpDPActivity : AppCompatActivity() {
         btnVolver = findViewById(R.id.volverLG)
         sexoSpinner = findViewById(R.id.sexoSpinner)
         btnContinuar = findViewById(R.id.continuarDB)
+        contrasenha = findViewById(R.id.password)
 
         //evento para volver a la activity de login
         btnVolver.setOnClickListener {
@@ -49,14 +56,18 @@ class SignUpDPActivity : AppCompatActivity() {
             val sexo = binding.sexoSpinner.selectedItem.toString()
 
             if (email.isNotEmpty() && nombre.isNotEmpty() && apellidos.isNotEmpty() && contrasenha.isNotEmpty()) {
-                val intent = Intent(this@SignUpDPActivity, SignUpDBActivity::class.java)
-                // Pasar los datos a la siguiente actividad
-                intent.putExtra("email", email)
-                intent.putExtra("nombre", nombre)
-                intent.putExtra("apellidos", apellidos)
-                intent.putExtra("contrasenha", contrasenha)
-                intent.putExtra("sexo", sexo)
-                startActivity(intent)
+                if (contrasenha.length>6) {
+                    val intent = Intent(this@SignUpDPActivity, SignUpDBActivity::class.java)
+                    // Pasar los datos a la siguiente actividad
+                    intent.putExtra("email", email)
+                    intent.putExtra("nombre", nombre)
+                    intent.putExtra("apellidos", apellidos)
+                    intent.putExtra("contrasenha", contrasenha)
+                    intent.putExtra("sexo", sexo)
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(this@SignUpDPActivity, "La contraseña debe tener mas de 6 caracteres", Toast.LENGTH_SHORT).show()
+                }
             } else {
                 Toast.makeText(this@SignUpDPActivity, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show()
             }
@@ -82,6 +93,8 @@ class SignUpDPActivity : AppCompatActivity() {
                 // Manejar la situación en la que no se selecciona nada
             }
         }
+
+
     }
 
 
@@ -94,5 +107,16 @@ class SignUpDPActivity : AppCompatActivity() {
             .addOnFailureListener { e ->
                 // Error al guardar el usuario en Firestore
             }
+    }
+
+    private fun showDialog(title: String, message: String) {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(title)
+        builder.setMessage(message)
+        builder.setPositiveButton("OK") { dialog, _ ->
+            dialog.dismiss()
+        }
+        val dialog = builder.create()
+        dialog.show()
     }
 }
