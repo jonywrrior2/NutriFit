@@ -27,7 +27,7 @@
     <string name="registrar">Registrar</string>
     <string name="introduce_el_correo_al_que_enviar_el_cambio_de_contrase_a">Introduce el correo al que enviar el cambio de contraseña</string>
     <string name="cambiar_contrase_a">Cambiar Contraseña</string>
-    <string name="resetear_contrase_a">Resetear Contraseña</string>
+    <string name="resetear_contrase_a">Restablecer Contraseña</string>
     <string name="volverResetPass">Volver</string>
     <string-array name="factor_actividad_values">
             <item>Poco o ningún ejercicio</item>
