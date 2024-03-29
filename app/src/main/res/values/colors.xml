@@ -5,4 +5,5 @@
     <color name="primario">#ff5500</color>
     <color name="primarioOscuro">#ff5500</color>
     <color name="colorAcentuado">#D81B60</color>
+    <color name="yellow">#FFEB02</color>
 </resources>
