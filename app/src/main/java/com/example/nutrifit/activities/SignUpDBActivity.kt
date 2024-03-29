@@ -27,7 +27,6 @@ class SignUpDBActivity : AppCompatActivity() {
     private lateinit var pesoTxt: EditText
     private lateinit var btnVolver: Button
     private lateinit var btnRegistar: Button
-    private lateinit var user: User
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -185,10 +184,13 @@ class SignUpDBActivity : AppCompatActivity() {
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, contrasenha)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    // Registro exitoso, ahora guardamos el usuario en Firestore
+                    // Registro exitoso, obtenemos el usuario actual
                     val firebaseUser = FirebaseAuth.getInstance().currentUser
                     if (firebaseUser != null) {
+                        // Guardamos el usuario en Firestore
                         guardarUsuarioEnFirestore(user)
+                        val intent = Intent(this@SignUpDBActivity, LoginActivity::class.java)
+                        startActivity(intent)
                     } else {
                         Toast.makeText(
                             this@SignUpDBActivity,

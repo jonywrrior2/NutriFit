@@ -42,6 +42,7 @@ class SignUpDPActivity : AppCompatActivity() {
         btnContinuar = findViewById(R.id.continuarDB)
         contrasenha = findViewById(R.id.password)
 
+
         //evento para volver a la activity de login
         btnVolver.setOnClickListener {
             val intent = Intent(this@SignUpDPActivity, LoginActivity::class.java)
@@ -54,6 +55,7 @@ class SignUpDPActivity : AppCompatActivity() {
             val apellidos = binding.apellidos.text.toString()
             val contrasenha = binding.password.text.toString()
             val sexo = binding.sexoSpinner.selectedItem.toString()
+
 
             if (email.isNotEmpty() && nombre.isNotEmpty() && apellidos.isNotEmpty() && contrasenha.isNotEmpty()) {
                 if (contrasenha.length>6) {
@@ -87,6 +89,7 @@ class SignUpDPActivity : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 val selectedFactor = parent.getItemAtPosition(position).toString()
                 // Aquí puedes hacer algo con el factor de actividad seleccionado
+
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
