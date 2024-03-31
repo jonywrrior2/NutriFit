@@ -27,7 +27,8 @@ class SignUpDPActivity : AppCompatActivity() {
     private lateinit var contrasenha: EditText
 
     private val EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@gmail.com$"
-    private val NAME_PATTERN = "^[a-zA-Z]{2,}\$"
+    private val NAME_PATTERN = "^[a-zA-Z ]{2,}\$"
+
     private val PASSWORD_PATTERN = "^(?=.*[A-Z]).{6,}\$"
 
     @SuppressLint("ClickableViewAccessibility")
@@ -98,10 +99,11 @@ class SignUpDPActivity : AppCompatActivity() {
 
     private fun validateName(name: String): Boolean {
         return if (!Pattern.matches(NAME_PATTERN, name)) {
-            Toast.makeText(this@SignUpDPActivity, "Nombre o apellido no válido (deben contener mas de dos letras)", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@SignUpDPActivity, "Nombre o apellido no válido (deben contener más de dos letras)", Toast.LENGTH_SHORT).show()
             false
         } else true
     }
+
 
     private fun validatePassword(password: String): Boolean {
         return if (!Pattern.matches(PASSWORD_PATTERN, password)) {
