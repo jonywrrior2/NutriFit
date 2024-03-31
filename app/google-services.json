@@ -12,7 +12,20 @@
           "package_name": "com.example.nutrifit"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "300253647060-18b75urvkd6i1evgo2484ucqeedfqki5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.nutrifit",
+            "certificate_hash": "ea1860a298a0087922915aef0eea69dab97c5115"
+          }
+        },
+        {
+          "client_id": "300253647060-lv6s2g5lpmbqe1s347bsbbv7o355evho.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAv49f-un_QkUGmOgV4loVJ2NfoAXwPzwQ"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "300253647060-lv6s2g5lpmbqe1s347bsbbv7o355evho.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
