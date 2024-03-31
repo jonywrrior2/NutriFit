@@ -72,7 +72,6 @@ class SignUpDBActivity : AppCompatActivity() {
                                 nombre,
                                 apellidos,
                                 email,
-                                contrasenha,
                                 edad,
                                 sexo,
                                 altura,
