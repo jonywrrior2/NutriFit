@@ -29,6 +29,7 @@
     <string name="cambiar_contrase_a">Cambiar Contraseña</string>
     <string name="resetear_contrase_a">Restablecer Contraseña</string>
     <string name="volverResetPass">Volver</string>
+    <string name="nutrifit">NutriFit</string>
     <string-array name="factor_actividad_values">
             <item>Poco o ningún ejercicio</item>
             <item>Ejercicio ligero (1-3 días a la semana)</item>

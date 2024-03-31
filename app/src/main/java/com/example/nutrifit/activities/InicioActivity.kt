@@ -11,7 +11,7 @@ import com.example.nutrifit.R
 
 class InicioActivity : AppCompatActivity() {
 
-    private val SPLASH_TIME_OUT: Long = 1400
+    private val SPLASH_TIME_OUT: Long = 1250
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -12,7 +12,7 @@ import android.widget.Toast
 import com.example.nutrifit.R
 import com.google.firebase.auth.FirebaseAuth
 
-//TODO falta que al actualizar la contraseña el usuario, se guarde en la BD
+
 
 class RecuperarPassActivity : AppCompatActivity() {
 
