@@ -34,7 +34,6 @@
         android:inputType="number"
         android:layout_marginBottom="10dp"
         android:background="#30ffffff"
-        android:drawableEnd="@drawable/ic_info"
         android:hint="@string/altura"
         android:padding="20dp"
         android:textColor="@color/white"
@@ -61,6 +60,7 @@
             android:drawablePadding="20dp"
             android:hint="@string/edad"
             android:inputType="number"
+            android:textColor="@color/white"
             android:padding="20dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -101,7 +101,6 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:background="#30ffffff"
-        android:drawableEnd="@drawable/ic_info"
         android:drawablePadding="20dp"
         android:hint="@string/peso"
         android:padding="20dp"
@@ -109,6 +108,10 @@
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:tooltipText="Peso (en kilogramos)" />
+
+
+
+
 
     <TextView
         android:id="@+id/labelObjetivo"

@@ -28,7 +28,6 @@ class SignUpDBActivity : AppCompatActivity() {
     private lateinit var btnVolver: Button
     private lateinit var btnRegistar: Button
 
-    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignupdbBinding.inflate(layoutInflater)
@@ -77,7 +76,9 @@ class SignUpDBActivity : AppCompatActivity() {
                                 altura,
                                 peso,
                                 nivelActividad,
-                                objetivo
+                                objetivo,
+                                0,
+                                0
                             )
 
                             // Registrar y autenticar al usuario
@@ -168,26 +169,7 @@ class SignUpDBActivity : AppCompatActivity() {
             }
         }
 
-        // Agregar OnTouchListener al EditText de altura
-        alturaTxt.setOnTouchListener { view, event ->
-            // Verificar si se hizo clic en el icono de información
-            if (event.action == MotionEvent.ACTION_UP && event.rawX >= (alturaTxt.right - alturaTxt.compoundDrawables[2].bounds.width())) {
-                // Si el clic se encuentra dentro del área del icono de información
-                showDialog("Altura (en cm)", "Introduce tu altura en centímetros.")
-                return@setOnTouchListener true
-            }
-            return@setOnTouchListener false
-        }
 
-        pesoTxt.setOnTouchListener { view, event ->
-            // Verificar si se hizo clic en el icono de información
-            if (event.action == MotionEvent.ACTION_UP && event.rawX >= (pesoTxt.right - pesoTxt.compoundDrawables[2].bounds.width())) {
-                // Si el clic se encuentra dentro del área del icono de información
-                showDialog("Peso (en kg)", "Introduce tu peso en kilogramos.")
-                return@setOnTouchListener true
-            }
-            return@setOnTouchListener false
-        }
     }
 
     // Función para mostrar el diálogo
@@ -210,10 +192,18 @@ class SignUpDBActivity : AppCompatActivity() {
                     // Registro exitoso, obtenemos el usuario actual
                     val firebaseUser = FirebaseAuth.getInstance().currentUser
                     if (firebaseUser != null) {
+                        // Ajustar las calorías y proteínas según el objetivo seleccionado
+                        ajustarCaloriasYProteinas(user)
+
+                        val calorias = user.calorias
+                        val proteinas = user.proteinas
+
                         // Guardamos el usuario en Firestore
                         guardarUsuarioEnFirestore(user)
-                        val intent = Intent(this@SignUpDBActivity, LoginActivity::class.java)
-                        startActivity(intent)
+
+                        // Mostrar mensaje de éxito y redirigir al usuario a la pantalla de inicio de sesión
+                        mostrarMensajeExito(calorias, proteinas)
+
                     } else {
                         Toast.makeText(
                             this@SignUpDBActivity,
@@ -253,4 +243,71 @@ class SignUpDBActivity : AppCompatActivity() {
                 // Error al guardar el usuario en Firestore
             }
     }
+
+    // Función para ajustar las calorías y proteínas según el objetivo seleccionado
+    private fun ajustarCaloriasYProteinas(user: User) {
+        val tmb: Double = if (user.sexo == "Masculino") {
+            66.4730 + (13.7516 * user.peso) + (5.0033 * user.altura) - (6.7550 * user.edad)
+        } else {
+            655.0955 + (9.5634 * user.peso) + (1.8449 * user.altura) - (4.6756 * user.edad)
+        }
+
+        val factorActividad = when (user.nivelActividad) {
+            "Poco o ningún ejercicio" -> 1.2
+            "Ejercicio ligero (1-3 días a la semana)" -> 1.375
+            "Ejercicio moderado (3-5 días a la semana)" -> 1.55
+            "Ejercicio fuerte (6-7 días a la semana)" -> 1.725
+            "Ejercicio muy fuerte (dos veces al día, entrenamientos muy duros)" -> 1.9
+            else -> 1.0 // Si no se selecciona un factor de actividad válido, usar 1.0
+        }
+
+        var caloriasNecesarias = (tmb * factorActividad).toInt()
+        var proteinasNecesarias = 0 // Variable para calcular las proteínas necesarias
+
+        when (user.objetivo) {
+            "Bajar Peso" -> {
+                caloriasNecesarias -= 500
+                proteinasNecesarias = (user.peso * 1.3).toInt()
+            }
+            "Subir Peso" -> {
+                caloriasNecesarias += 700
+                proteinasNecesarias = (user.peso * 2.0).toInt()
+            }
+            "Recomposición Corporal" -> {
+                caloriasNecesarias -= 150
+                proteinasNecesarias = (user.peso * 2.0).toInt()
+            }
+            "Mantener Peso" -> {
+
+                proteinasNecesarias = (user.peso * 1.9).toInt()
+            }
+        }
+
+
+        println("Proteínas necesarias: ${proteinasNecesarias}")
+
+        // Asignar las calorías y las proteínas necesarias al objeto User
+        user.calorias = caloriasNecesarias
+        user.proteinas = proteinasNecesarias
+    }
+
+
+    // Función para mostrar el mensaje de éxito y redirigir al usuario a la pantalla de inicio de sesión
+    private fun mostrarMensajeExito(calorias: Int, proteinas: Int) {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Registro Exitoso")
+        builder.setMessage("Se ha registrado exitosamente.\n\n" +
+                "Calorías necesarias: $calorias Kcal\n" +
+                "Proteínas necesarias: $proteinas g\n\n" +
+                "Por favor, inicie sesión.")
+        builder.setPositiveButton("OK") { dialog, _ ->
+            dialog.dismiss()
+            // Redirigir al usuario a la pantalla de inicio de sesión
+            val intent = Intent(this@SignUpDBActivity, LoginActivity::class.java)
+            startActivity(intent)
+        }
+        val dialog = builder.create()
+        dialog.show()
+    }
+
 }

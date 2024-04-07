@@ -11,6 +11,8 @@ data class User(
         val altura: Double,
         val peso: Double,
         val nivelActividad: String,
-        val objetivo: String
+        val objetivo: String,
+        var calorias: Int,
+        var proteinas: Int
     ): Serializable {}
 

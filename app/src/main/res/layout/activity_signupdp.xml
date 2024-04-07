@@ -43,6 +43,7 @@
             android:background="#30ffffff"
             android:drawablePadding="20dp"
             android:hint="@string/nombre"
+            android:textColor="@color/white"
             android:inputType="text"
             android:padding="20dp" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -66,6 +67,7 @@
             android:background="#30ffffff"
             android:drawablePadding="20dp"
             android:hint="@string/apellidos"
+            android:textColor="@color/white"
             android:inputType="text"
             android:padding="20dp"
              />
@@ -90,6 +92,7 @@
             android:background="#30ffffff"
             android:drawablePadding="20dp"
             android:hint="@string/emailRegister"
+            android:textColor="@color/white"
             android:inputType="textEmailAddress"
             android:padding="20dp"
             />
@@ -115,6 +118,7 @@
             android:layout_height="wrap_content"
             android:background="#30ffffff"
             android:drawablePadding="20dp"
+            android:textColor="@color/white"
             android:hint="@string/contrase_a"
             android:inputType="textPassword"
             android:padding="20dp"

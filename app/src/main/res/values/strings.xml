@@ -42,6 +42,7 @@
         <item>Bajar Peso</item>
         <item>Subir Peso</item>
         <item>Recomposición Corporal</item>
+        <item>Mantener Peso</item>
     </string-array>
 
     <string-array name="array_sexo">
