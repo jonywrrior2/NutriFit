@@ -23,28 +23,36 @@
         android:textSize="35sp"
         android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/alturaTxt"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/alturaTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/signuptitle"
         android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
-        android:inputType="number"
         android:layout_marginBottom="10dp"
-        android:background="#30ffffff"
-        android:hint="@string/altura"
-        android:padding="20dp"
         android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        android:textColorHint="@color/white">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/alturaTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#30ffffff"
+            android:drawablePadding="20dp"
+            android:hint="@string/altura"
+            android:inputType="number"
+            android:textColor="@color/white"
+            android:padding="20dp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/edadTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/alturaTxt"
+        android:layout_below="@id/alturaTextInputLayout"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
@@ -91,8 +99,8 @@
         android:textColor="@color/white" />
 
 
-    <EditText
-        android:id="@+id/pesoTxt"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/pesoTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/factorActividadSpinner"
@@ -100,14 +108,21 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:background="#30ffffff"
-        android:drawablePadding="20dp"
-        android:hint="@string/peso"
-        android:padding="20dp"
-        android:inputType="number"
         android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:tooltipText="Peso (en kilogramos)" />
+        android:textColorHint="@color/white">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/pesoTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#30ffffff"
+            android:drawablePadding="20dp"
+            android:hint="@string/peso"
+            android:inputType="number"
+            android:textColor="@color/white"
+            android:padding="20dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
 
 
 
@@ -117,14 +132,14 @@
         android:id="@+id/labelObjetivo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/pesoTxt"
+        android:layout_below="@id/pesoTextInputLayout"
         android:layout_marginStart="25dp"
         android:text="@string/objetivo_lbl"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold" />
 
-    <!-- Spinner "Objetivo" -->
+
     <Spinner
         android:id="@+id/objetivoSpinner"
         android:layout_width="match_parent"

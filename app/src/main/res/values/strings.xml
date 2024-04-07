@@ -17,9 +17,9 @@
     <string name="datos_biom_tricos">Datos Biométricos</string>
     <string name="edad">Edad</string>
     <string name="factor_actividad">Nivel Actividad</string>
-    <string name="peso">Peso</string>
+    <string name="peso">Peso (En kg)</string>
     <string name="objetivo">Objetivo</string>
-    <string name="altura">Altura</string>
+    <string name="altura">Altura (En cm)</string>
     <string name="objetivo_lbl">Objetivo</string>
     <string name="nivel_de_actividadlbl">Nivel de Actividad</string>
     <string name="recordar">recordar usuario</string>
