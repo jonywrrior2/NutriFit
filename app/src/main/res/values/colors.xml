@@ -3,7 +3,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="primario">#ff5500</color>
-    <color name="primarioOscuro">#ff5500</color>
+    <color name="primarioOscuro">#F1BF44</color>
     <color name="colorAcentuado">#D81B60</color>
     <color name="yellow">#FFEB02</color>
+    <color name="gray">#313130</color>
+    <color name="grayOscuro">#292928</color>
 </resources>

@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activities.MainActivity">
+    tools:context=".activities.MainActivity"
+    android:background="@color/gray">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/back"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:background="@null"
             android:textStyle="bold"
             android:onClick="previousWeekAction"
@@ -33,7 +34,8 @@
             android:layout_weight="2"
             android:text="ABRIL 2024"
             android:textAlignment="center"
-            android:textColor="@color/black"
+
+            android:textColor="@color/white"
             android:textSize="20sp"
             android:textAllCaps="true"/>
 
@@ -42,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/forward"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:background="@null"
             android:textStyle="bold"
             android:onClick="nextWeekAction"
@@ -60,7 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/lun"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textAlignment="center"
             android:textSize="16sp"/>
 
@@ -69,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/mar"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textAlignment="center"
             android:textSize="16sp"/>
 
@@ -78,7 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/mi"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textAlignment="center"
             android:textSize="16sp"/>
 
@@ -87,7 +89,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/jue"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textAlignment="center"
             android:textSize="16sp"/>
 
@@ -96,7 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/vie"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textAlignment="center"
             android:textSize="16sp"/>
 
@@ -105,7 +107,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/s_b"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textAlignment="center"
             android:textSize="16sp"/>
 
@@ -114,18 +116,18 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/dom"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textAlignment="center"
             android:textSize="16sp"/>
     </LinearLayout>
 
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/calendarRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_height="1dp"
+        android:layout_weight="0.3"
+/>
 
 
 
@@ -133,7 +135,9 @@
         android:id="@+id/eventListView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="5"/>
+        android:background="@color/grayOscuro"
+        android:layout_weight="5"
+        />
 
 
 </LinearLayout>
