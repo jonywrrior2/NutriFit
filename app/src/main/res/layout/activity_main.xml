@@ -28,13 +28,14 @@
 
         <TextView
             android:id="@+id/monthYearTV"
-            android:layout_width="0dp"
+            android:layout_width="203dp"
+            android:layout_height="37dp"
             android:layout_weight="2"
-            android:layout_height="wrap_content"
             android:text="ABRIL 2024"
-            android:textSize="20sp"
             android:textAlignment="center"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textAllCaps="true"/>
 
         <Button
             android:layout_width="0dp"
@@ -58,7 +59,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="LUN"
+            android:text="@string/lun"
             android:textColor="@color/black"
             android:textAlignment="center"
             android:textSize="16sp"/>
@@ -67,7 +68,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="MAR"
+            android:text="@string/mar"
             android:textColor="@color/black"
             android:textAlignment="center"
             android:textSize="16sp"/>
@@ -76,7 +77,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="MIÉ"
+            android:text="@string/mi"
             android:textColor="@color/black"
             android:textAlignment="center"
             android:textSize="16sp"/>
@@ -85,7 +86,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="JUE"
+            android:text="@string/jue"
             android:textColor="@color/black"
             android:textAlignment="center"
             android:textSize="16sp"/>
@@ -94,7 +95,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="VIE"
+            android:text="@string/vie"
             android:textColor="@color/black"
             android:textAlignment="center"
             android:textSize="16sp"/>
@@ -103,7 +104,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="SÁB"
+            android:text="@string/s_b"
             android:textColor="@color/black"
             android:textAlignment="center"
             android:textSize="16sp"/>
@@ -112,7 +113,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="DOM"
+            android:text="@string/dom"
             android:textColor="@color/black"
             android:textAlignment="center"
             android:textSize="16sp"/>
