@@ -5,6 +5,7 @@ import java.time.LocalDate
 import java.time.LocalTime
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 object CalendarioUtils {
     var selectedDate: LocalDate? = null
@@ -19,10 +20,11 @@ object CalendarioUtils {
         return time.format(formatter)
     }
 
-    fun monthYearFromDate(date: LocalDate): String {
-        val formatter = DateTimeFormatter.ofPattern("MMMM yyyy")
+    fun monthYearFromDate(date: LocalDate, language: String = "en"): String {
+        val formatter = DateTimeFormatter.ofPattern("MMMM", Locale(language))
         return date.format(formatter)
     }
+
 
     fun daysInMonthArray(date: LocalDate): ArrayList<LocalDate?> {
         val daysInMonthArray = ArrayList<LocalDate?>()
@@ -37,7 +39,7 @@ object CalendarioUtils {
             if (i <= dayOfWeek || i > daysInMonth + dayOfWeek) {
                 daysInMonthArray.add(null)
             } else {
-                daysInMonthArray.add(LocalDate.of(selectedDate!!.year, selectedDate!!.month, i - dayOfWeek))
+                daysInMonthArray.add(LocalDate.of(selectedDate!!.year, selectedDate!!.month, i - dayOfWeek + 1))
             }
         }
         return daysInMonthArray
@@ -45,22 +47,27 @@ object CalendarioUtils {
 
     fun daysInWeekArray(selectedDate: LocalDate): ArrayList<LocalDate> {
         val days = ArrayList<LocalDate>()
-        var current = sundayForDate(selectedDate)
-        val endDate = current?.plusWeeks(1)
+        var current = mondayForDate(selectedDate)
+        val endDate = current?.plusDays(6)
 
         while (current?.isBefore(endDate) == true) {
             days.add(current)
             current = current?.plusDays(1)
         }
+        // Agregar el domingo al final de la semana
+        if (endDate != null) {
+            days.add(endDate)
+        }
         return days
     }
 
-    private fun sundayForDate(current: LocalDate): LocalDate? {
+
+    fun mondayForDate(current: LocalDate): LocalDate? {
         var current = current
         val oneWeekAgo = current.minusWeeks(1)
 
         while (current.isAfter(oneWeekAgo)) {
-            if (current.dayOfWeek == DayOfWeek.SUNDAY) {
+            if (current.dayOfWeek == DayOfWeek.MONDAY) {
                 return current
             }
             current = current.minusDays(1)

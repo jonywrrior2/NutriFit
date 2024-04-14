@@ -38,10 +38,25 @@ class MainActivity : AppCompatActivity(), CalendarioAdapter.OnItemListener{
     private fun setWeekView() {
         // Obtener la fecha actual
         val currentDate = LocalDate.now()
-        // Obtener el mes y año actual formateado
-        val currentMonthYear = CalendarioUtils.monthYearFromDate(CalendarioUtils.selectedDate ?: currentDate)
+
+        // Obtener el primer y último día de la semana
+        val startOfWeek = CalendarioUtils.mondayForDate(CalendarioUtils.selectedDate ?: currentDate)
+        val endOfWeek = startOfWeek?.plusDays(6)
+
+        // Obtener el mes y año del primer y último día de la semana en español
+        val startMonthYear = CalendarioUtils.monthYearFromDate(startOfWeek ?: currentDate, "es")
+        val endMonthYear = CalendarioUtils.monthYearFromDate(endOfWeek ?: currentDate, "es")
+
+        // Concatenar la información de mes/año solo si los meses son diferentes
+        val monthYearTextString = if (startMonthYear != endMonthYear) {
+            "$startMonthYear / $endMonthYear"
+        } else {
+            startMonthYear
+        }
+
         // Establecer el texto en el TextView
-        monthYearText.text = currentMonthYear
+        monthYearText.text = monthYearTextString
+
         // Obtener los días de la semana actual
         val days = CalendarioUtils.daysInWeekArray(CalendarioUtils.selectedDate ?: currentDate)
 
@@ -50,6 +65,9 @@ class MainActivity : AppCompatActivity(), CalendarioAdapter.OnItemListener{
         calendarRecyclerView.layoutManager = layoutManager
         calendarRecyclerView.adapter = calendarAdapter
     }
+
+
+
 
 
     fun previousWeekAction(view: View?) {

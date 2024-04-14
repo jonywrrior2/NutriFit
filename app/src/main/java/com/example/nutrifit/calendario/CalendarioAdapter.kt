@@ -29,7 +29,6 @@ class CalendarioAdapter(private val days: ArrayList<LocalDate>, private val onIt
         }
     }
 
-
     override fun getItemCount(): Int {
         return days.size
     }
