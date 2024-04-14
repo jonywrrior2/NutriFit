@@ -13,7 +13,7 @@ class CalendarioAdapter(private val days: ArrayList<LocalDate>, private val onIt
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.celda_calendario, parent, false)
         val layoutParams = view.layoutParams
-        if (days.size > 15) { //month view
+        if (days.size > 15) {
             layoutParams.height = (parent.height * 0.166666666).toInt()
         } else { // week view
             layoutParams.height = parent.height
@@ -34,6 +34,8 @@ class CalendarioAdapter(private val days: ArrayList<LocalDate>, private val onIt
     }
 
     interface OnItemListener {
+
+
         fun onItemClick(position: Int, date: LocalDate)
     }
 }

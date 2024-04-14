@@ -12,6 +12,9 @@ import com.example.nutrifit.calendario.CalendarioAdapter
 import com.example.nutrifit.calendario.CalendarioUtils
 import java.time.LocalDate
 
+
+
+
 class MainActivity : AppCompatActivity(), CalendarioAdapter.OnItemListener{
     private lateinit var monthYearText: TextView
     private lateinit var calendarRecyclerView: RecyclerView
@@ -26,8 +29,11 @@ class MainActivity : AppCompatActivity(), CalendarioAdapter.OnItemListener{
         }
         setWeekView()
 
-        setWeekView()
+
+
+
     }
+
 
     private fun initWidgets() {
         calendarRecyclerView = findViewById(R.id.calendarRecyclerView)
@@ -81,6 +87,8 @@ class MainActivity : AppCompatActivity(), CalendarioAdapter.OnItemListener{
     }
 
     override fun onItemClick(position: Int, date: LocalDate) {
+
+
         CalendarioUtils.selectedDate = date
         setWeekView()
     }
