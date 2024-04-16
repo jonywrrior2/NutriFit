@@ -142,9 +142,10 @@
             app:cardBackgroundColor="@color/grayOscuro"
             android:outlineSpotShadowColor="@color/white"
             app:cardElevation="18dp"
+            app:cardCornerRadius="8dp"
             >
 
-            <!-- Contenido del desayuno -->
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -154,7 +155,7 @@
 
         </androidx.cardview.widget.CardView>
 
-        <!-- Repite este bloque para almuerzo, merienda y cena -->
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="70dp"
@@ -163,9 +164,10 @@
             app:cardBackgroundColor="@color/grayOscuro"
             android:outlineSpotShadowColor="@color/white"
             app:cardElevation="18dp"
+            app:cardCornerRadius="8dp"
             >
 
-            <!-- Contenido del almuerzo -->
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -182,9 +184,10 @@
             android:layout_marginTop="20dp"
             app:cardBackgroundColor="@color/grayOscuro"
             android:outlineSpotShadowColor="@color/white"
-            app:cardElevation="18dp">
+            app:cardElevation="18dp"
+            app:cardCornerRadius="8dp">
 
-            <!-- Contenido de la merienda -->
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -202,9 +205,10 @@
             app:cardBackgroundColor="@color/grayOscuro"
             android:outlineSpotShadowColor="@color/white"
             app:cardElevation="18dp"
+            app:cardCornerRadius="8dp"
             >
 
-            <!-- Contenido de la cena -->
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
