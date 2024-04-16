@@ -125,31 +125,96 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/calendarRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_weight="0.3"
-/>
-
-
-
-    <ListView
-        android:id="@+id/eventListView"
-        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/grayOscuro"
-        android:layout_weight="5"
-        />
+        android:layout_weight="0.3" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:orientation="vertical"
+        android:background="@color/grayOscuro">
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginHorizontal="28dp"
+            android:layout_marginTop="30dp"
+            app:cardBackgroundColor="@color/grayOscuro"
+            android:outlineSpotShadowColor="@color/white"
+            app:cardElevation="18dp"
+            >
+
+            <!-- Contenido del desayuno -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/desayuno"
+                android:textColor="@color/white"
+                android:textSize="18sp"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Repite este bloque para almuerzo, merienda y cena -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginHorizontal="28dp"
+            android:layout_marginTop="20dp"
+            app:cardBackgroundColor="@color/grayOscuro"
+            android:outlineSpotShadowColor="@color/white"
+            app:cardElevation="18dp"
+            >
+
+            <!-- Contenido del almuerzo -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/almuerzo"
+                android:textColor="@color/white"
+                android:textSize="18sp"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginHorizontal="28dp"
+            android:layout_marginTop="20dp"
+            app:cardBackgroundColor="@color/grayOscuro"
+            android:outlineSpotShadowColor="@color/white"
+            app:cardElevation="18dp">
+
+            <!-- Contenido de la merienda -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/merienda"
+                android:textColor="@color/white"
+                android:textSize="18sp"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginHorizontal="28dp"
+            android:layout_marginTop="20dp"
+            app:cardBackgroundColor="@color/grayOscuro"
+            android:outlineSpotShadowColor="@color/white"
+            app:cardElevation="18dp"
+            >
+
+            <!-- Contenido de la cena -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/cena"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                />
+
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
 
 
 </LinearLayout>
-
-
-
-
-
-
-
-
-
-
-
-

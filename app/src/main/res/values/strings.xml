@@ -40,6 +40,10 @@
     <string name="vie">VIE</string>
     <string name="s_b">SÁB</string>
     <string name="dom">DOM</string>
+    <string name="desayuno">Desayuno</string>
+    <string name="almuerzo">Almuerzo</string>
+    <string name="merienda">Merienda</string>
+    <string name="cena">Cena</string>
     <string-array name="factor_actividad_values">
             <item>Poco o ningún ejercicio</item>
             <item>Ejercicio ligero (1-3 días a la semana)</item>

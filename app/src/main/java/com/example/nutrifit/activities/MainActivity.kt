@@ -18,7 +18,6 @@ import java.time.LocalDate
 class MainActivity : AppCompatActivity(), CalendarioAdapter.OnItemListener{
     private lateinit var monthYearText: TextView
     private lateinit var calendarRecyclerView: RecyclerView
-    private lateinit var eventListView: ListView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,15 +29,13 @@ class MainActivity : AppCompatActivity(), CalendarioAdapter.OnItemListener{
         setWeekView()
 
 
-
-
     }
 
 
     private fun initWidgets() {
         calendarRecyclerView = findViewById(R.id.calendarRecyclerView)
         monthYearText = findViewById(R.id.monthYearTV)
-        eventListView = findViewById(R.id.eventListView)
+
     }
 
     private fun setWeekView() {
