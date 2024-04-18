@@ -41,7 +41,7 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.12.0")
+    implementation("androidx.core:core-ktx:1.13.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     //Material Design
@@ -58,11 +58,11 @@ dependencies {
     // Implementaciones de firebase
 
     //Base de datos FB
-    implementation("com.google.firebase:firebase-firestore:24.11.0")
+    implementation("com.google.firebase:firebase-firestore:24.11.1")
     //Biblioteca FB
     implementation(platform("com.google.firebase:firebase-bom:32.8.0"))
     //FB authenticator
     implementation("com.google.firebase:firebase-auth:22.3.1")
     //Login Google
-    implementation ("com.google.android.gms:play-services-auth:21.0.0")
+    implementation ("com.google.android.gms:play-services-auth:21.1.0")
 }
