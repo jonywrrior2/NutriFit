@@ -32,6 +32,7 @@
     <string name="nutrifit">NutriFit</string>
     <string name="V">V</string>
     <string name="back"><![CDATA[<-]]></string>
+    <string name="backActivity"><![CDATA[<]]></string>
     <string name="forward"><![CDATA[->]]></string>
     <string name="lun">LUN</string>
     <string name="mar">MAR</string>
