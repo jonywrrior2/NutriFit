@@ -1,5 +1,6 @@
 package com.example.nutrifit.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ListView
@@ -35,6 +36,38 @@ class MainActivity : AppCompatActivity(), CalendarioAdapter.OnItemListener{
     private fun initWidgets() {
         calendarRecyclerView = findViewById(R.id.calendarRecyclerView)
         monthYearText = findViewById(R.id.monthYearTV)
+
+        val addFoodTextView1: TextView = findViewById(R.id.anhadircomida)
+        val addFoodTextView2: TextView = findViewById(R.id.anhadircomida2)
+        val addFoodTextView3: TextView = findViewById(R.id.anhadircomida3)
+        val addFoodTextView4: TextView = findViewById(R.id.anhadircomida4)
+
+        addFoodTextView1.setOnClickListener {
+            // Aquí colocas el código para abrir la AnhadirComidaActivity
+            val intent = Intent(this, AnhadirComidaActivity::class.java)
+            startActivity(intent)
+        }
+
+// Definir el OnClickListener para addFoodTextView2
+        addFoodTextView2.setOnClickListener {
+            // Aquí colocas el código para abrir la AnhadirComidaActivity
+            val intent = Intent(this, AnhadirComidaActivity::class.java)
+            startActivity(intent)
+        }
+
+// Definir el OnClickListener para addFoodTextView3
+        addFoodTextView3.setOnClickListener {
+            // Aquí colocas el código para abrir la AnhadirComidaActivity
+            val intent = Intent(this, AnhadirComidaActivity::class.java)
+            startActivity(intent)
+        }
+
+// Definir el OnClickListener para addFoodTextView4
+        addFoodTextView4.setOnClickListener {
+            // Aquí colocas el código para abrir la AnhadirComidaActivity
+            val intent = Intent(this, AnhadirComidaActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 

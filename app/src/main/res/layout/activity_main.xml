@@ -175,6 +175,7 @@
                         android:layout_marginStart="8dp"/>
 
                     <TextView
+                        android:id="@+id/anhadircomida"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="@string/a_adir_comida"
@@ -260,6 +261,7 @@
                         android:layout_marginStart="8dp"/>
 
                     <TextView
+                        android:id="@+id/anhadircomida2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="@string/a_adir_comida"
@@ -346,6 +348,7 @@
 
 
                     <TextView
+                        android:id="@+id/anhadircomida3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="@string/a_adir_comida"
@@ -433,6 +436,7 @@
                         android:layout_marginStart="8dp"/>
 
                     <TextView
+                        android:id="@+id/anhadircomida4"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="@string/a_adir_comida"
