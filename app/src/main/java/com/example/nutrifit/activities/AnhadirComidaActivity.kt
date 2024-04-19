@@ -25,7 +25,10 @@ class AnhadirComidaActivity : AppCompatActivity() {
         txtIngresarAlimento = findViewById(R.id.txtIngresarAlimento)
         comidasRecyclerView = findViewById(R.id.comidasRecyclerView)
 
-        adapter = ComidasAdapter(this)
+        adapter = ComidasAdapter(this) { comidaSeleccionada ->
+            txtIngresarAlimento.setText(comidaSeleccionada)
+        }
+
         comidasRecyclerView.adapter = adapter
         comidasRecyclerView.layoutManager = LinearLayoutManager(this)
 

@@ -8,12 +8,19 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nutrifit.R
 
-class ComidasAdapter(private val context: Context) : RecyclerView.Adapter<ComidasAdapter.ComidaViewHolder>() {
+class ComidasAdapter(private val context: Context, private val itemClickListener: (String) -> Unit) : RecyclerView.Adapter<ComidasAdapter.ComidaViewHolder>() {
 
     private var comidas: List<String> = ArrayList()
 
     inner class ComidaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nombreComidaTextView: TextView = itemView.findViewById(R.id.nombreComidaTextView)
+
+        init {
+            itemView.setOnClickListener {
+                val comidaSeleccionada = comidas[adapterPosition]
+                itemClickListener(comidaSeleccionada)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ComidaViewHolder {
@@ -35,6 +42,5 @@ class ComidasAdapter(private val context: Context) : RecyclerView.Adapter<Comida
         comidas = nuevaLista
         notifyDataSetChanged()
     }
-
-
 }
+
