@@ -3,6 +3,7 @@ package com.example.nutrifit.activities
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +18,8 @@ class AnhadirComidaActivity : AppCompatActivity() {
     private lateinit var comidasRecyclerView: RecyclerView
     private lateinit var adapter: ComidasAdapter
 
+    private var recyclerViewVisible = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_anhadircomida)
@@ -27,25 +30,30 @@ class AnhadirComidaActivity : AppCompatActivity() {
 
         adapter = ComidasAdapter(this) { comidaSeleccionada ->
             txtIngresarAlimento.setText(comidaSeleccionada)
+
+
+            comidasRecyclerView.visibility = View.GONE
+            recyclerViewVisible = false
         }
 
         comidasRecyclerView.adapter = adapter
         comidasRecyclerView.layoutManager = LinearLayoutManager(this)
 
-        // Escuchar cambios en el TextInputEditText
+
         txtIngresarAlimento.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+                comidasRecyclerView.visibility = View.VISIBLE
+                recyclerViewVisible = true
+
                 obtenerComidasFiltradas(s.toString()) { alimentos ->
                     adapter.actualizarLista(alimentos)
                 }
             }
 
-
-            override fun afterTextChanged(s: Editable?) {
-            }
+            override fun afterTextChanged(s: Editable?) {}
         })
     }
 
@@ -56,6 +64,4 @@ class AnhadirComidaActivity : AppCompatActivity() {
             callback(alimentosEncontrados)
         }
     }
-
 }
-

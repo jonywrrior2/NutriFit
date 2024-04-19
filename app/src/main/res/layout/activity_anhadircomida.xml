@@ -24,7 +24,7 @@
             android:textColor="@color/white"
             android:background="@null"
             android:textStyle="bold"
-            android:onClick="previousWeekAction"
+            android:onClick="volverMain"
             android:textSize="23sp"/>
 
         <TextView
