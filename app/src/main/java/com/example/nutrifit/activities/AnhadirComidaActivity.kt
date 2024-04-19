@@ -64,4 +64,8 @@ class AnhadirComidaActivity : AppCompatActivity() {
             callback(alimentosEncontrados)
         }
     }
+
+    fun volverMain(view: View) {
+        finish()
+    }
 }
