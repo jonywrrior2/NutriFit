@@ -1,12 +1,14 @@
 package com.example.nutrifit.comidas
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nutrifit.R
+import com.example.nutrifit.activities.NutrientesActivity
 import com.example.nutrifit.pojo.Alimento
 
 class ComidasAdapter(private val context: Context, private val itemClickListener: (Alimento) -> Unit) : RecyclerView.Adapter<ComidasAdapter.ComidaViewHolder>() {
@@ -34,6 +36,15 @@ class ComidasAdapter(private val context: Context, private val itemClickListener
         val comida = comidas[position]
         val texto = "${comida.nombre}\nKcal: ${comida.calorias} Proteínas: ${comida.proteinas}g Cantidad: ${comida.cantidad}g"
         holder.nombreComidaTextView.text = texto
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, NutrientesActivity::class.java).apply {
+                putExtra("nombre", comida.nombre)
+                putExtra("kcal", comida.calorias)
+                putExtra("proteinas", comida.proteinas)
+                putExtra("cantidad", comida.cantidad)
+            }
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {

@@ -70,6 +70,13 @@
             android:theme="@style/Theme.NutriFit">
 
         </activity>
+
+        <activity
+            android:name=".activities.NutrientesActivity"
+            android:exported="true"
+            android:theme="@style/Theme.NutriFit">
+
+        </activity>
     </application>
 
 </manifest>

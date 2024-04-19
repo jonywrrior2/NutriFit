@@ -28,7 +28,6 @@
             android:textSize="23sp"/>
 
         <TextView
-            android:id="@+id/monthYearTV"
             android:layout_width="203dp"
             android:layout_height="37dp"
             android:layout_weight="2"

@@ -32,6 +32,7 @@ class AnhadirComidaActivity : AppCompatActivity() {
 
         adapter = ComidasAdapter(this) { comidaSeleccionada ->
             txtIngresarAlimento.setText(comidaSeleccionada.nombre)
+            openActivityNutrientes(comidaSeleccionada)
 
             comidasRecyclerView.visibility = View.GONE
             recyclerViewVisible = false
@@ -66,6 +67,16 @@ class AnhadirComidaActivity : AppCompatActivity() {
 
     fun volverMain(view: View) {
         val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun openActivityNutrientes(alimento: Alimento) {
+        val intent = Intent(this, NutrientesActivity::class.java).apply {
+            putExtra("nombre", alimento.nombre)
+            putExtra("calorias", alimento.calorias)
+            putExtra("proteinas", alimento.proteinas)
+            putExtra("cantidad", alimento.cantidad)
+        }
         startActivity(intent)
     }
 }
