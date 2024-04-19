@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.nutrifit.R
 import com.example.nutrifit.comidas.ComidasAdapter
 import com.example.nutrifit.db.DatabaseManager
+import com.example.nutrifit.pojo.Alimento
 import com.google.android.material.textfield.TextInputEditText
 
 class AnhadirComidaActivity : AppCompatActivity() {
@@ -30,8 +31,7 @@ class AnhadirComidaActivity : AppCompatActivity() {
         comidasRecyclerView = findViewById(R.id.comidasRecyclerView)
 
         adapter = ComidasAdapter(this) { comidaSeleccionada ->
-            txtIngresarAlimento.setText(comidaSeleccionada)
-
+            txtIngresarAlimento.setText(comidaSeleccionada.nombre)
 
             comidasRecyclerView.visibility = View.GONE
             recyclerViewVisible = false
@@ -40,12 +40,10 @@ class AnhadirComidaActivity : AppCompatActivity() {
         comidasRecyclerView.adapter = adapter
         comidasRecyclerView.layoutManager = LinearLayoutManager(this)
 
-
         txtIngresarAlimento.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
                 comidasRecyclerView.visibility = View.VISIBLE
                 recyclerViewVisible = true
 
@@ -58,7 +56,7 @@ class AnhadirComidaActivity : AppCompatActivity() {
         })
     }
 
-    private fun obtenerComidasFiltradas(query: String, callback: (List<String>) -> Unit) {
+    private fun obtenerComidasFiltradas(query: String, callback: (List<Alimento>) -> Unit) {
         val databaseManager = DatabaseManager()
 
         databaseManager.buscarAlimentos(query) { alimentosEncontrados ->
@@ -70,5 +68,4 @@ class AnhadirComidaActivity : AppCompatActivity() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
-
 }

@@ -7,10 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nutrifit.R
+import com.example.nutrifit.pojo.Alimento
 
-class ComidasAdapter(private val context: Context, private val itemClickListener: (String) -> Unit) : RecyclerView.Adapter<ComidasAdapter.ComidaViewHolder>() {
+class ComidasAdapter(private val context: Context, private val itemClickListener: (Alimento) -> Unit) : RecyclerView.Adapter<ComidasAdapter.ComidaViewHolder>() {
 
-    private var comidas: List<String> = ArrayList()
+    private var comidas: List<Alimento> = ArrayList()
 
     inner class ComidaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nombreComidaTextView: TextView = itemView.findViewById(R.id.nombreComidaTextView)
@@ -31,16 +32,16 @@ class ComidasAdapter(private val context: Context, private val itemClickListener
 
     override fun onBindViewHolder(holder: ComidaViewHolder, position: Int) {
         val comida = comidas[position]
-        holder.nombreComidaTextView.text = comida
+        val texto = "${comida.nombre}\nKcal: ${comida.calorias} Proteínas: ${comida.proteinas}g Cantidad: ${comida.cantidad}g"
+        holder.nombreComidaTextView.text = texto
     }
 
     override fun getItemCount(): Int {
         return comidas.size
     }
 
-    fun actualizarLista(nuevaLista: List<String>) {
+    fun actualizarLista(nuevaLista: List<Alimento>) {
         comidas = nuevaLista
         notifyDataSetChanged()
     }
 }
-
