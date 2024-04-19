@@ -112,7 +112,7 @@
             android:textColor="@color/black"
             android:padding="16dp"
             android:textColorHint="@color/black"
-            android:hint="Aun no ha añadido ninguna comida"/>
+            android:hint="@string/aun_no_ha_a_adido_ninguna_comida"/>
     </androidx.cardview.widget.CardView>
 
 </LinearLayout>
