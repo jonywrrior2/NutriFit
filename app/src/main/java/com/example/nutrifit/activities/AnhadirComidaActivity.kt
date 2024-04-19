@@ -1,5 +1,6 @@
 package com.example.nutrifit.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -66,6 +67,8 @@ class AnhadirComidaActivity : AppCompatActivity() {
     }
 
     fun volverMain(view: View) {
-        finish()
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
     }
+
 }
