@@ -25,7 +25,6 @@ class AnhadirComidaActivity : AppCompatActivity() {
         txtIngresarAlimento = findViewById(R.id.txtIngresarAlimento)
         comidasRecyclerView = findViewById(R.id.comidasRecyclerView)
 
-        // Configurar RecyclerView
         adapter = ComidasAdapter(this)
         comidasRecyclerView.adapter = adapter
         comidasRecyclerView.layoutManager = LinearLayoutManager(this)
@@ -33,7 +32,6 @@ class AnhadirComidaActivity : AppCompatActivity() {
         // Escuchar cambios en el TextInputEditText
         txtIngresarAlimento.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                // No es necesario implementar este método
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -44,17 +42,14 @@ class AnhadirComidaActivity : AppCompatActivity() {
 
 
             override fun afterTextChanged(s: Editable?) {
-                // No es necesario implementar este método
             }
         })
     }
 
-    // Método ficticio para obtener una lista de comidas filtradas según el texto ingresado por el usuario
     private fun obtenerComidasFiltradas(query: String, callback: (List<String>) -> Unit) {
         val databaseManager = DatabaseManager()
 
         databaseManager.buscarAlimentos(query) { alimentosEncontrados ->
-            // Aquí puedes manejar los alimentos encontrados
             callback(alimentosEncontrados)
         }
     }

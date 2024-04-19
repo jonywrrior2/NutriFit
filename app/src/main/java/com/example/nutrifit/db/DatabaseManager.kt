@@ -22,7 +22,6 @@ class DatabaseManager {
                 callback(resultados)
             }
             .addOnFailureListener { exception ->
-                // Manejar el error aquí
                 callback(emptyList())
             }
     }
