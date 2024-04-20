@@ -18,13 +18,13 @@ class DatabaseManager {
             .addOnSuccessListener { documents ->
                 for (document in documents) {
                     val nombre = document.getString("nombre")
-                    val calorias = document.getLong("kcal")?.toInt() ?: 0
-                    val proteinas = document.getLong("proteinas")?.toInt() ?: 0
-                    val cantidad = document.getLong("cantidad")?.toInt() ?: 0
-                    nombre?.let {
-                        val alimento = Alimento(nombre, calorias, proteinas, cantidad)
+                    val calorias = document.getLong("kcal")?.toDouble() ?: 0.0
+                    val proteinas = document.getLong("proteinas")?.toDouble() ?: 0.0
+                    val cantidad = document.getLong("cantidad")?.toDouble() ?: 0.0
+                    val unidad = document.getString("unidad")
+                        val alimento = Alimento(nombre, calorias, proteinas, cantidad, unidad)
                         resultados.add(alimento)
-                    }
+
                 }
                 callback(resultados)
             }
@@ -32,5 +32,5 @@ class DatabaseManager {
                 callback(emptyList())
             }
     }
-
 }
+

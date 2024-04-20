@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -76,7 +77,9 @@ class AnhadirComidaActivity : AppCompatActivity() {
             putExtra("calorias", alimento.calorias)
             putExtra("proteinas", alimento.proteinas)
             putExtra("cantidad", alimento.cantidad)
+            putExtra("unidad", alimento.unidad)
         }
         startActivity(intent)
     }
+
 }
