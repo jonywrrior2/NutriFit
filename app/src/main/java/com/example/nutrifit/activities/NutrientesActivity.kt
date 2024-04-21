@@ -34,12 +34,13 @@ class NutrientesActivity : AppCompatActivity() {
         val pickerCantidad = findViewById<NumberPicker>(R.id.numberPickerCantidad)
         guardarAlimentoButton = findViewById(R.id.guardarAlimento)
 
+        val guardarAlimentoButton: Button = findViewById(R.id.guardarAlimento)
         guardarAlimentoButton.setOnClickListener {
             // Obtener los datos de los elementos TextView y NumberPicker
             val comidaNutriente = txtNombre.text.toString()
-            cantidad = cantidadSeleccionada
-            calorias = txtCalorias.text.toString().split(" ")[0].toDouble()
-            proteinas = txtProteinas.text.toString().split(" ")[0].toDouble()
+             cantidad = cantidadSeleccionada
+             calorias = txtCalorias.text.toString().split(" ")[0].toDouble()
+             proteinas = txtProteinas.text.toString().split(" ")[0].toDouble()
 
             // Crear un Intent para pasar los datos a AnhadirComidaActivity
             val intent = Intent(this@NutrientesActivity, AnhadirComidaActivity::class.java).apply {
@@ -71,7 +72,6 @@ class NutrientesActivity : AppCompatActivity() {
             val proteinas = (basep * cantidadSeleccionada / 50)
             txtCalorias.text = "$calorias kcal"
             txtProteinas.text = "$proteinas g"
-
         }
 
         pickerCantidad.descendantFocusability = NumberPicker.FOCUS_BLOCK_DESCENDANTS

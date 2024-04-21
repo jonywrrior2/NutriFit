@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nutrifit.R
 import com.example.nutrifit.comidas.ComidasAdapter
-import com.example.nutrifit.db.DatabaseManager
+import com.example.nutrifit.dbFB.DatabaseManager
 import com.example.nutrifit.pojo.Alimento
 import com.google.android.material.textfield.TextInputEditText
 
@@ -25,6 +25,8 @@ class AnhadirComidaActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_anhadircomida)
+
+
 
         // Inicializar views
         txtIngresarAlimento = findViewById(R.id.txtIngresarAlimento)

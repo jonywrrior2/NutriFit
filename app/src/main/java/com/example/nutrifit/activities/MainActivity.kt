@@ -19,6 +19,7 @@ import java.time.LocalDate
 class MainActivity : AppCompatActivity(), CalendarioAdapter.OnItemListener{
     private lateinit var monthYearText: TextView
     private lateinit var calendarRecyclerView: RecyclerView
+    private lateinit var momentoDia: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,28 +46,36 @@ class MainActivity : AppCompatActivity(), CalendarioAdapter.OnItemListener{
         addFoodTextView1.setOnClickListener {
             // Aquí colocas el código para abrir la AnhadirComidaActivity
             val intent = Intent(this, AnhadirComidaActivity::class.java)
+            intent.putExtra("momentoDia", "Desayuno")
             startActivity(intent)
+
         }
 
 // Definir el OnClickListener para addFoodTextView2
         addFoodTextView2.setOnClickListener {
             // Aquí colocas el código para abrir la AnhadirComidaActivity
             val intent = Intent(this, AnhadirComidaActivity::class.java)
+            intent.putExtra("momentoDia", "Almuerzo")
             startActivity(intent)
+
         }
 
 // Definir el OnClickListener para addFoodTextView3
         addFoodTextView3.setOnClickListener {
             // Aquí colocas el código para abrir la AnhadirComidaActivity
             val intent = Intent(this, AnhadirComidaActivity::class.java)
+            intent.putExtra("momentoDia", "Merienda")
             startActivity(intent)
+
         }
 
 // Definir el OnClickListener para addFoodTextView4
         addFoodTextView4.setOnClickListener {
             // Aquí colocas el código para abrir la AnhadirComidaActivity
             val intent = Intent(this, AnhadirComidaActivity::class.java)
+            intent.putExtra("momentoDia", "Cena")
             startActivity(intent)
+
         }
 
     }
