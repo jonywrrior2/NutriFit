@@ -6,7 +6,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
-import android.widget.TextView
+
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -104,15 +104,14 @@ class   AnhadirComidaActivity : AppCompatActivity() {
     private fun obtenerMenusDelUsuarioActual() {
         DatabaseManagerMenu.getUserMenus(
             onSuccess = { menus ->
-                // Obtener el tipo de comida del Intent
                 val tipoComida = intent.getStringExtra("tipo")
-                // Filtrar los menús según el tipo de comida especificado en el Intent
+
                 val menusFiltrados = menus.filter { it.tipo.equals(tipoComida) }
-                // Actualizar la interfaz de usuario con los menús filtrados
+
                 actualizarComidasTextView(menusFiltrados)
             },
             onFailure = { exception ->
-                // Manejar la falla en caso de error
+
                 Log.e("DatabaseManagerMenu", "Error al obtener los menús del usuario actual: $exception")
             }
         )
