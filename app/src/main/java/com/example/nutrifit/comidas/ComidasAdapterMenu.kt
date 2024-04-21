@@ -26,7 +26,7 @@ class ComidasAdapterMenu(private val context: Context, private var menus: List<M
     override fun onBindViewHolder(holder: ComidaViewHolder, position: Int) {
         val currentItem = menus[position]
         holder.textViewAlimentos.text = context.getString(R.string.alimentos_template, currentItem.alimentos)
-        holder.textViewCantidad.text = context.getString(R.string.cantidad_template, currentItem.cantidad)
+        holder.textViewCantidad.text = context.getString(R.string.cantidad_template, currentItem.cantidad)+ " ${currentItem.unidad}"
         holder.textViewKcal.text = context.getString(R.string.kcal_template, currentItem.kcal)+ "/kcal"
         holder.textViewProteinas.text = context.getString(R.string.proteinas_template, currentItem.proteinas) + " g"
     }
