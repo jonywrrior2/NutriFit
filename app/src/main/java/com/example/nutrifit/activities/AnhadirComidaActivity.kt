@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -11,8 +12,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nutrifit.R
 import com.example.nutrifit.comidas.ComidasAdapter
-import com.example.nutrifit.dbFB.DatabaseManager
+import com.example.nutrifit.comidas.ComidasAdapterMenu
+import com.example.nutrifit.dbAlimentos.DatabaseManager
+import com.example.nutrifit.dbMenus.DatabaseManagerMenu
 import com.example.nutrifit.pojo.Alimento
+import com.example.nutrifit.pojo.Menu
 import com.google.android.material.textfield.TextInputEditText
 
 class AnhadirComidaActivity : AppCompatActivity() {
@@ -20,19 +24,17 @@ class AnhadirComidaActivity : AppCompatActivity() {
     private lateinit var txtIngresarAlimento: TextInputEditText
     private lateinit var comidasRecyclerView: RecyclerView
     private lateinit var adapter: ComidasAdapter
-    private lateinit var comidastxt: TextView
+    private lateinit var listaComidaRecyclerView: RecyclerView
+    private lateinit var adapterMenu: ComidasAdapterMenu
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_anhadircomida)
 
-
-
         // Inicializar views
         txtIngresarAlimento = findViewById(R.id.txtIngresarAlimento)
         comidasRecyclerView = findViewById(R.id.comidasRecyclerView)
-        comidastxt = findViewById(R.id.comidasTextView)
-
+        listaComidaRecyclerView = findViewById(R.id.listaComida)
 
         adapter = ComidasAdapter(this) { comidaSeleccionada ->
             txtIngresarAlimento.setText(comidaSeleccionada.nombre)
@@ -40,8 +42,13 @@ class AnhadirComidaActivity : AppCompatActivity() {
             comidasRecyclerView.visibility = View.GONE
         }
 
+        adapterMenu = ComidasAdapterMenu(this, emptyList())
+
         comidasRecyclerView.adapter = adapter
         comidasRecyclerView.layoutManager = LinearLayoutManager(this)
+
+        listaComidaRecyclerView.adapter = adapterMenu
+        listaComidaRecyclerView.layoutManager = LinearLayoutManager(this)
 
         txtIngresarAlimento.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -57,18 +64,18 @@ class AnhadirComidaActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable?) {}
         })
 
-        // Recibir datos de NutrientesActivity
-        val nombre = intent.getStringExtra("comidaNutriente")
-        val cantidad = intent.getDoubleExtra("cantidad", 0.0)
-        val calorias = intent.getDoubleExtra("calorias", 0.0)
-        val proteinas = intent.getDoubleExtra("proteinas", 0.0)
+        obtenerMenusDelUsuarioActual()
+    }
 
-
-        // Si los datos son diferentes de null, actualizar el texto del TextInputEditText
-        if (nombre != null) {
-            comidastxt.text = "Nombre: $nombre\nCalorías: $calorias kcal\nProteínas: $proteinas g\nCantidad: $cantidad"
-
+    private fun actualizarComidasTextView(menus: List<Menu>) {
+        val builder = StringBuilder()
+        for (menu in menus) {
+            builder.append("Alimentos: ${menu.alimentos}\n")
+            builder.append("Cantidad: ${menu.cantidad}\n")
+            builder.append("Kcal: ${menu.kcal}/kcal\n")
+            builder.append("Proteínas: ${menu.proteinas} g\n")
         }
+        adapterMenu.actualizarLista(menus)
     }
 
     private fun obtenerComidasFiltradas(query: String, callback: (List<Alimento>) -> Unit) {
@@ -92,5 +99,18 @@ class AnhadirComidaActivity : AppCompatActivity() {
             putExtra("unidad", alimento.unidad)
         }
         startActivity(intent)
+    }
+
+    private fun obtenerMenusDelUsuarioActual() {
+        DatabaseManagerMenu.getUserMenus(
+            onSuccess = { menus ->
+                // Actualizar el texto del TextView con la información de los menús
+                actualizarComidasTextView(menus)
+            },
+            onFailure = { exception ->
+                // Manejar la falla en caso de error
+                Log.e("DatabaseManagerMenu", "Error al obtener los menús del usuario actual: $exception")
+            }
+        )
     }
 }

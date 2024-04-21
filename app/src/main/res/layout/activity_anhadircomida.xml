@@ -99,27 +99,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
-        app:cardBackgroundColor="@color/melocoton"
-        android:outlineSpotShadowColor="@color/melocoton"
+        app:cardBackgroundColor="@color/white"
+        android:outlineSpotShadowColor="@color/white"
         app:cardElevation="28dp"
         app:cardCornerRadius="8dp">
 
         <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewComida"
+                android:id="@+id/listaComida"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
             android:textColor="@color/black"
+            android:hint="@string/aun_no_ha_a_adido_ninguna_comida"
              />
 
-        <TextView
-            android:id="@+id/comidasTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text="@string/aun_no_ha_a_adido_ninguna_comida"
-            android:textColor="@color/black"
- />
     </androidx.cardview.widget.CardView>
 
 </LinearLayout>

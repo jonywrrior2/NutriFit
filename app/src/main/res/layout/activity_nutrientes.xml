@@ -45,8 +45,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginHorizontal="30dp"
-        app:cardBackgroundColor="@color/melocoton"
-        android:outlineSpotShadowColor="@color/melocoton"
+        app:cardBackgroundColor="@color/white"
+        android:outlineSpotShadowColor="@color/white"
         app:cardElevation="28dp"
         app:cardCornerRadius="8dp">
     <LinearLayout
@@ -62,7 +62,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="@string/cantidad"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="20sp"/>
 
         <NumberPicker
@@ -82,8 +82,8 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="30dp"
-        app:cardBackgroundColor="@color/melocoton"
-        android:outlineSpotShadowColor="@color/melocoton"
+        app:cardBackgroundColor="@color/white"
+        android:outlineSpotShadowColor="@color/white"
         app:cardElevation="28dp"
         app:cardCornerRadius="8dp">
 
@@ -100,7 +100,7 @@
             android:layout_height="wrap_content"
             android:text="@string/unidad"
             android:layout_marginBottom="20dp"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="20sp"/>
 
         <TextView
@@ -122,8 +122,8 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="30dp"
-        app:cardBackgroundColor="@color/melocoton"
-        android:outlineSpotShadowColor="@color/melocoton"
+        app:cardBackgroundColor="@color/white"
+        android:outlineSpotShadowColor="@color/white"
         app:cardElevation="28dp"
         app:cardCornerRadius="8dp">
 
@@ -140,7 +140,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/calorias1"
                 android:layout_marginBottom="20dp"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="20sp"/>
 
             <TextView
@@ -150,7 +150,7 @@
                 android:layout_marginStart="90dp"
                 android:text="0"
                 android:layout_marginBottom="20dp"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="20sp"/>
 
 
@@ -162,8 +162,8 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="30dp"
-        app:cardBackgroundColor="@color/melocoton"
-        android:outlineSpotShadowColor="@color/melocoton"
+        app:cardBackgroundColor="@color/white"
+        android:outlineSpotShadowColor="@color/white"
         app:cardElevation="28dp"
         app:cardCornerRadius="8dp">
 
@@ -180,7 +180,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/proteinas"
                 android:layout_marginBottom="20dp"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="20sp"/>
 
             <TextView
@@ -190,7 +190,7 @@
                 android:layout_marginStart="81dp"
                 android:text="0"
                 android:layout_marginBottom="20dp"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="20sp"/>
 
 

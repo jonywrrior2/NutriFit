@@ -55,6 +55,10 @@
     <string name="comida">Comida</string>
     <string name="proteinas">Proteinas</string>
     <string name="calorias1">Calorias</string>
+    <string name="alimentos_template">Alimentos: %1$s</string>
+    <string name="cantidad_template">Cantidad: %1$d</string>
+    <string name="kcal_template">Kcal: %1$.2f</string>
+    <string name="proteinas_template">Proteínas: %1$.2f</string>
     <string name="unidad">Unidad</string>
     <string name="cantidad">Cantidad</string>
     <string name="a_adir_alimento">Añadir Alimento</string>

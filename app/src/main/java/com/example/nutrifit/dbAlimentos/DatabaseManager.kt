@@ -1,4 +1,4 @@
-package com.example.nutrifit.dbFB
+package com.example.nutrifit.dbAlimentos
 
 import com.example.nutrifit.pojo.Alimento
 import com.google.firebase.firestore.FirebaseFirestore
