@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity(), CalendarioAdapter.OnItemListener{
         addFoodTextView1.setOnClickListener {
             // Aquí colocas el código para abrir la AnhadirComidaActivity
             val intent = Intent(this, AnhadirComidaActivity::class.java)
-            intent.putExtra("momentoDia", "Desayuno")
+            intent.putExtra("tipo", "Desayuno")
             startActivity(intent)
 
         }
@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity(), CalendarioAdapter.OnItemListener{
         addFoodTextView2.setOnClickListener {
             // Aquí colocas el código para abrir la AnhadirComidaActivity
             val intent = Intent(this, AnhadirComidaActivity::class.java)
-            intent.putExtra("momentoDia", "Almuerzo")
+            intent.putExtra("tipo", "Almuerzo")
             startActivity(intent)
 
         }
@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity(), CalendarioAdapter.OnItemListener{
         addFoodTextView3.setOnClickListener {
             // Aquí colocas el código para abrir la AnhadirComidaActivity
             val intent = Intent(this, AnhadirComidaActivity::class.java)
-            intent.putExtra("momentoDia", "Merienda")
+            intent.putExtra("tipo", "Merienda")
             startActivity(intent)
 
         }
@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity(), CalendarioAdapter.OnItemListener{
         addFoodTextView4.setOnClickListener {
             // Aquí colocas el código para abrir la AnhadirComidaActivity
             val intent = Intent(this, AnhadirComidaActivity::class.java)
-            intent.putExtra("momentoDia", "Cena")
+            intent.putExtra("tipo", "Cena")
             startActivity(intent)
 
         }

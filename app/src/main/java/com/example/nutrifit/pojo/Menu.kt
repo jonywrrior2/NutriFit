@@ -7,7 +7,8 @@ data class Menu(
     var kcal: Double = 0.0,
     var proteinas: Double = 0.0,
     var unidad: String? = "",
-    var usuario: String? = ""
+    var usuario: String? = "",
+    var tipo: String = ""
 )
 
 

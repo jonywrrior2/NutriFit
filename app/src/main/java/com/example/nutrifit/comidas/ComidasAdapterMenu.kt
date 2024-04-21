@@ -37,4 +37,6 @@ class ComidasAdapterMenu(private val context: Context, private var menus: List<M
         menus = nuevosMenus
         notifyDataSetChanged()
     }
+
+
 }

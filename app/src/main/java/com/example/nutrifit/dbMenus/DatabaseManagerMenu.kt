@@ -35,8 +35,11 @@ object DatabaseManagerMenu {
                         val cantidad = (menuData?.get("cantidad") as Long).toInt()
                         val kcal = (menuData?.get("kcal") as Long).toDouble()
                         val proteinas = (menuData?.get("proteinas") as Long).toDouble()
+                        val tipo = menuData?.get("tipo") as String
                         val unidad = menuData?.get("unidad") as String
-                        val menu = Menu(alimentos, cantidad, kcal, proteinas, unidad)
+                        val usuario = currentUserEmail ?: ""
+                        val menu = Menu(alimentos, cantidad, kcal, proteinas, unidad, usuario, tipo)
+
                         menus.add(menu)
                     }
                     onSuccess(menus)
@@ -44,6 +47,7 @@ object DatabaseManagerMenu {
                 .addOnFailureListener { e -> onFailure(e) }
         } ?: onFailure(Exception("User not logged in"))
     }
+
 
 
 

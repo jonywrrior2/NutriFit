@@ -19,7 +19,7 @@ import com.example.nutrifit.pojo.Alimento
 import com.example.nutrifit.pojo.Menu
 import com.google.android.material.textfield.TextInputEditText
 
-class AnhadirComidaActivity : AppCompatActivity() {
+class   AnhadirComidaActivity : AppCompatActivity() {
 
     private lateinit var txtIngresarAlimento: TextInputEditText
     private lateinit var comidasRecyclerView: RecyclerView
@@ -104,8 +104,12 @@ class AnhadirComidaActivity : AppCompatActivity() {
     private fun obtenerMenusDelUsuarioActual() {
         DatabaseManagerMenu.getUserMenus(
             onSuccess = { menus ->
-                // Actualizar el texto del TextView con la información de los menús
-                actualizarComidasTextView(menus)
+                // Obtener el tipo de comida del Intent
+                val tipoComida = intent.getStringExtra("tipo")
+                // Filtrar los menús según el tipo de comida especificado en el Intent
+                val menusFiltrados = menus.filter { it.tipo.equals(tipoComida) }
+                // Actualizar la interfaz de usuario con los menús filtrados
+                actualizarComidasTextView(menusFiltrados)
             },
             onFailure = { exception ->
                 // Manejar la falla en caso de error
