@@ -104,14 +104,22 @@
         app:cardElevation="28dp"
         app:cardCornerRadius="8dp">
 
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewComida"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:textColor="@color/black"
+             />
+
         <TextView
             android:id="@+id/comidasTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
             android:padding="16dp"
-            android:textColorHint="@color/black"
-            android:hint="@string/aun_no_ha_a_adido_ninguna_comida"/>
+            android:text="@string/aun_no_ha_a_adido_ninguna_comida"
+            android:textColor="@color/black"
+ />
     </androidx.cardview.widget.CardView>
 
 </LinearLayout>

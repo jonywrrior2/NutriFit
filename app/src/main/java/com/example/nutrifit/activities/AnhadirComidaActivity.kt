@@ -4,8 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,8 +20,7 @@ class AnhadirComidaActivity : AppCompatActivity() {
     private lateinit var txtIngresarAlimento: TextInputEditText
     private lateinit var comidasRecyclerView: RecyclerView
     private lateinit var adapter: ComidasAdapter
-
-    private var recyclerViewVisible = false
+    private lateinit var comidastxt: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,13 +29,13 @@ class AnhadirComidaActivity : AppCompatActivity() {
         // Inicializar views
         txtIngresarAlimento = findViewById(R.id.txtIngresarAlimento)
         comidasRecyclerView = findViewById(R.id.comidasRecyclerView)
+        comidastxt = findViewById(R.id.comidasTextView)
+
 
         adapter = ComidasAdapter(this) { comidaSeleccionada ->
             txtIngresarAlimento.setText(comidaSeleccionada.nombre)
             openActivityNutrientes(comidaSeleccionada)
-
             comidasRecyclerView.visibility = View.GONE
-            recyclerViewVisible = false
         }
 
         comidasRecyclerView.adapter = adapter
@@ -47,7 +46,6 @@ class AnhadirComidaActivity : AppCompatActivity() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 comidasRecyclerView.visibility = View.VISIBLE
-                recyclerViewVisible = true
 
                 obtenerComidasFiltradas(s.toString()) { alimentos ->
                     adapter.actualizarLista(alimentos)
@@ -56,11 +54,23 @@ class AnhadirComidaActivity : AppCompatActivity() {
 
             override fun afterTextChanged(s: Editable?) {}
         })
+
+        // Recibir datos de NutrientesActivity
+        val nombre = intent.getStringExtra("comidaNutriente")
+        val cantidad = intent.getDoubleExtra("cantidad", 0.0)
+        val calorias = intent.getDoubleExtra("calorias", 0.0)
+        val proteinas = intent.getDoubleExtra("proteinas", 0.0)
+
+
+        // Si los datos son diferentes de null, actualizar el texto del TextInputEditText
+        if (nombre != null) {
+            comidastxt.text = "Nombre: $nombre\nCalorías: $calorias kcal\nProteínas: $proteinas g\nCantidad: $cantidad"
+
+        }
     }
 
     private fun obtenerComidasFiltradas(query: String, callback: (List<Alimento>) -> Unit) {
         val databaseManager = DatabaseManager()
-
         databaseManager.buscarAlimentos(query) { alimentosEncontrados ->
             callback(alimentosEncontrados)
         }
@@ -81,5 +91,4 @@ class AnhadirComidaActivity : AppCompatActivity() {
         }
         startActivity(intent)
     }
-
 }
