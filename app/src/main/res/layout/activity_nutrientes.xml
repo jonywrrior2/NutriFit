@@ -197,4 +197,33 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="60dp"
+        app:cardBackgroundColor="@color/gray"
+        android:outlineSpotShadowColor="@color/white"
+        app:cardElevation="18dp"
+        app:cardCornerRadius="8dp">
+
+
+
+            <Button
+                android:id="@+id/guardarAlimento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/a_adir_alimento"
+                android:textColor="@color/white"
+                android:background="@null"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textSize="23sp"/>
+
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
 </LinearLayout>
