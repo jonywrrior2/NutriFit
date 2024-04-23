@@ -51,13 +51,4 @@ object DatabaseManagerMenu {
 
 
 
-
-    private fun parseMenus(querySnapshot: QuerySnapshot): List<Menu> {
-        val menus = mutableListOf<Menu>()
-        for (document in querySnapshot.documents) {
-            val menu = document.toObject(Menu::class.java)
-            menu?.let { menus.add(it) }
-        }
-        return menus
-    }
 }

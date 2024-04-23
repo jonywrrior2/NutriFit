@@ -112,10 +112,10 @@ class   AnhadirComidaActivity : AppCompatActivity() {
     }
 
 
-    private fun obtenerMenusDelUsuarioActual() {
+     fun obtenerMenusDelUsuarioActual() {
+         val tipoComida = intent.getStringExtra("tipo")
         DatabaseManagerMenu.getUserMenus(
             onSuccess = { menus ->
-                val tipoComida = intent.getStringExtra("tipo")
 
                 val menusFiltrados = menus.filter { it.tipo.equals(tipoComida) }
 

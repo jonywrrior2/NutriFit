@@ -12,10 +12,13 @@ import com.example.nutrifit.R
 class NutrientesActivity : AppCompatActivity() {
 
     private lateinit var guardarAlimentoButton: Button
+    private lateinit var anhadirComidaActivity: AnhadirComidaActivity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nutrientes)
+        anhadirComidaActivity = AnhadirComidaActivity()
+
 
         val nombre = intent.getStringExtra("nombre")
         var calorias = intent.getDoubleExtra("kcal", 0.0)
@@ -51,11 +54,14 @@ class NutrientesActivity : AppCompatActivity() {
                 putExtra("calorias", calorias)
                 putExtra("proteinas", proteinas)
                 putExtra("unidad", unidad)
+                putExtra("tipo", tipo) // Aquí se agrega el tipo de comida
             }
 
             // Iniciar la actividad AnhadirComidaActivity
             startActivity(intent)
         }
+
+
 
         val minValue = 25
         val maxValue = 1000
