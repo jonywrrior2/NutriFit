@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.nutrifit.R
 import com.example.nutrifit.calendario.CalendarioAdapter
 import com.example.nutrifit.calendario.CalendarioUtils
+import com.example.nutrifit.pojo.Alimento
 import java.time.LocalDate
 
 
@@ -19,7 +20,6 @@ import java.time.LocalDate
 class MainActivity : AppCompatActivity(), CalendarioAdapter.OnItemListener{
     private lateinit var monthYearText: TextView
     private lateinit var calendarRecyclerView: RecyclerView
-    private lateinit var momentoDia: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,13 +47,13 @@ class MainActivity : AppCompatActivity(), CalendarioAdapter.OnItemListener{
             // Aquí colocas el código para abrir la AnhadirComidaActivity
             val intent = Intent(this, AnhadirComidaActivity::class.java)
             intent.putExtra("tipo", "Desayuno")
+
             startActivity(intent)
 
         }
 
 // Definir el OnClickListener para addFoodTextView2
         addFoodTextView2.setOnClickListener {
-            // Aquí colocas el código para abrir la AnhadirComidaActivity
             val intent = Intent(this, AnhadirComidaActivity::class.java)
             intent.putExtra("tipo", "Almuerzo")
             startActivity(intent)

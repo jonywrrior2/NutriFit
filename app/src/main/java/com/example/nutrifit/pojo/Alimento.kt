@@ -6,4 +6,5 @@ data class Alimento(
     val proteinas: Double,
     val cantidad: Double,
     val unidad: String?,
+
 )

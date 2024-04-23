@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nutrifit.R
+import com.example.nutrifit.activities.AnhadirComidaActivity
 import com.example.nutrifit.activities.NutrientesActivity
 import com.example.nutrifit.pojo.Alimento
 
@@ -43,6 +44,7 @@ class ComidasAdapter(private val context: Context, private val itemClickListener
                 putExtra("proteinas", comida.proteinas)
                 putExtra("cantidad", comida.cantidad)
                 putExtra("unidad", comida.unidad)
+                putExtra("tipo", (context as AnhadirComidaActivity).tipo)
             }
             context.startActivity(intent)
         }

@@ -25,12 +25,16 @@ class   AnhadirComidaActivity : AppCompatActivity() {
     private lateinit var adapter: ComidasAdapter
     private lateinit var listaComidaRecyclerView: RecyclerView
     private lateinit var adapterMenu: ComidasAdapterMenu
+    var tipo: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_anhadircomida)
 
-        val tipo = intent.getStringExtra("tipo")
+        tipo = intent.getStringExtra("tipo")
+
+
+
 
         // Inicializar views
         txtIngresarAlimento = findViewById(R.id.txtIngresarAlimento)
