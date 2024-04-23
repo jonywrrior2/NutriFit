@@ -6,7 +6,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
-
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -31,6 +30,8 @@ class   AnhadirComidaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_anhadircomida)
 
+        val tipo = intent.getStringExtra("tipo")
+
         // Inicializar views
         txtIngresarAlimento = findViewById(R.id.txtIngresarAlimento)
         comidasRecyclerView = findViewById(R.id.comidasRecyclerView)
@@ -38,11 +39,13 @@ class   AnhadirComidaActivity : AppCompatActivity() {
 
         adapter = ComidasAdapter(this) { comidaSeleccionada ->
             txtIngresarAlimento.setText(comidaSeleccionada.nombre)
-            openActivityNutrientes(comidaSeleccionada)
+            openActivityNutrientes(comidaSeleccionada, tipo)
             comidasRecyclerView.visibility = View.GONE
         }
 
         adapterMenu = ComidasAdapterMenu(this, emptyList())
+
+
 
         comidasRecyclerView.adapter = adapter
         comidasRecyclerView.layoutManager = LinearLayoutManager(this)
@@ -71,7 +74,7 @@ class   AnhadirComidaActivity : AppCompatActivity() {
         val builder = StringBuilder()
         for (menu in menus) {
             builder.append("Alimentos: ${menu.alimentos}\n")
-            builder.append("Cantidad: ${menu.cantidad}\n")
+            builder.append("Cantidad: ${menu.cantidad}+ ${menu.unidad}\n")
             builder.append("Kcal: ${menu.kcal}/kcal\n")
             builder.append("Proteínas: ${menu.proteinas} g\n")
         }
@@ -90,16 +93,20 @@ class   AnhadirComidaActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun openActivityNutrientes(alimento: Alimento) {
+    fun openActivityNutrientes(alimento: Alimento, tipo: String?) {
         val intent = Intent(this, NutrientesActivity::class.java).apply {
             putExtra("nombre", alimento.nombre)
             putExtra("calorias", alimento.calorias)
             putExtra("proteinas", alimento.proteinas)
             putExtra("cantidad", alimento.cantidad)
             putExtra("unidad", alimento.unidad)
+            putExtra("tipo", tipo)
         }
         startActivity(intent)
+
+
     }
+
 
     private fun obtenerMenusDelUsuarioActual() {
         DatabaseManagerMenu.getUserMenus(

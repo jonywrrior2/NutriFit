@@ -22,6 +22,8 @@ class NutrientesActivity : AppCompatActivity() {
         var proteinas = intent.getDoubleExtra("proteinas", 0.0)
         var cantidad = intent.getDoubleExtra("cantidad", 0.0)
         val unidad = intent.getStringExtra("unidad")
+        val tipo = intent.getStringExtra("tipo")
+
 
         var cantidadSeleccionada = cantidad
         var basec = calorias
@@ -38,9 +40,9 @@ class NutrientesActivity : AppCompatActivity() {
         guardarAlimentoButton.setOnClickListener {
             // Obtener los datos de los elementos TextView y NumberPicker
             val comidaNutriente = txtNombre.text.toString()
-             cantidad = cantidadSeleccionada
-             calorias = txtCalorias.text.toString().split(" ")[0].toDouble()
-             proteinas = txtProteinas.text.toString().split(" ")[0].toDouble()
+            cantidad = cantidadSeleccionada
+            calorias = txtCalorias.text.toString().split(" ")[0].toDouble()
+            proteinas = txtProteinas.text.toString().split(" ")[0].toDouble()
 
             // Crear un Intent para pasar los datos a AnhadirComidaActivity
             val intent = Intent(this@NutrientesActivity, AnhadirComidaActivity::class.java).apply {
@@ -48,6 +50,7 @@ class NutrientesActivity : AppCompatActivity() {
                 putExtra("cantidad", cantidad)
                 putExtra("calorias", calorias)
                 putExtra("proteinas", proteinas)
+                putExtra("unidad", unidad)
             }
 
             // Iniciar la actividad AnhadirComidaActivity

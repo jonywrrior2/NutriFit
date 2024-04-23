@@ -34,7 +34,7 @@ class ComidasAdapter(private val context: Context, private val itemClickListener
 
     override fun onBindViewHolder(holder: ComidaViewHolder, position: Int) {
         val comida = comidas[position]
-        val texto = "${comida.nombre}\nKcal: ${comida.calorias} Proteínas: ${comida.proteinas}g Cantidad: ${comida.cantidad}g"
+        val texto = "${comida.nombre}\nKcal: ${comida.calorias} Proteínas: ${comida.proteinas}g Cantidad: ${comida.cantidad} ${comida.unidad}"
         holder.nombreComidaTextView.text = texto
         holder.itemView.setOnClickListener {
             val intent = Intent(context, NutrientesActivity::class.java).apply {
@@ -42,6 +42,7 @@ class ComidasAdapter(private val context: Context, private val itemClickListener
                 putExtra("kcal", comida.calorias)
                 putExtra("proteinas", comida.proteinas)
                 putExtra("cantidad", comida.cantidad)
+                putExtra("unidad", comida.unidad)
             }
             context.startActivity(intent)
         }
