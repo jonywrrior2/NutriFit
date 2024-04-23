@@ -2,7 +2,6 @@ package com.example.nutrifit.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.NumberPicker
 import android.widget.TextView
@@ -12,6 +11,7 @@ import com.example.nutrifit.R
 class NutrientesActivity : AppCompatActivity() {
 
     private lateinit var guardarAlimentoButton: Button
+    private lateinit var volverbutton: Button
     private lateinit var anhadirComidaActivity: AnhadirComidaActivity
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,26 +38,39 @@ class NutrientesActivity : AppCompatActivity() {
         val txtProteinas = findViewById<TextView>(R.id.txtProteinasAN)
         val pickerCantidad = findViewById<NumberPicker>(R.id.numberPickerCantidad)
         guardarAlimentoButton = findViewById(R.id.guardarAlimento)
+        volverbutton = findViewById(R.id.volverComidaActivity)
+
+        volverbutton.setOnClickListener {
+
+
+
+            val intent = Intent(this@NutrientesActivity, AnhadirComidaActivity::class.java).apply {
+                putExtra("tipo", tipo)
+            }
+
+            startActivity(intent)
+
+        }
 
         val guardarAlimentoButton: Button = findViewById(R.id.guardarAlimento)
         guardarAlimentoButton.setOnClickListener {
-            // Obtener los datos de los elementos TextView y NumberPicker
+
             val comidaNutriente = txtNombre.text.toString()
             cantidad = cantidadSeleccionada
             calorias = txtCalorias.text.toString().split(" ")[0].toDouble()
             proteinas = txtProteinas.text.toString().split(" ")[0].toDouble()
 
-            // Crear un Intent para pasar los datos a AnhadirComidaActivity
+
             val intent = Intent(this@NutrientesActivity, AnhadirComidaActivity::class.java).apply {
                 putExtra("comidaNutriente", comidaNutriente)
                 putExtra("cantidad", cantidad)
                 putExtra("calorias", calorias)
                 putExtra("proteinas", proteinas)
                 putExtra("unidad", unidad)
-                putExtra("tipo", tipo) // Aquí se agrega el tipo de comida
+                putExtra("tipo", tipo)
             }
 
-            // Iniciar la actividad AnhadirComidaActivity
+
             startActivity(intent)
         }
 
@@ -91,8 +104,5 @@ class NutrientesActivity : AppCompatActivity() {
         txtProteinas.text = "$proteinas g"
     }
 
-    fun volverComida(view: View) {
-        val intent = Intent(this, AnhadirComidaActivity::class.java)
-        startActivity(intent)
-    }
+
 }

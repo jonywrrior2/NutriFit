@@ -24,7 +24,6 @@
             android:textColor="@color/white"
             android:background="@null"
             android:textStyle="bold"
-            android:onClick="volverComida"
             android:textSize="23sp"/>
 
         <TextView

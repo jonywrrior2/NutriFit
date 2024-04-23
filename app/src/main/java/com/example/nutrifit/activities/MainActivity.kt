@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity(), CalendarioAdapter.OnItemListener{
         val addFoodTextView4: TextView = findViewById(R.id.anhadircomida4)
 
         addFoodTextView1.setOnClickListener {
-            // Aquí colocas el código para abrir la AnhadirComidaActivity
+
             val intent = Intent(this, AnhadirComidaActivity::class.java)
             intent.putExtra("tipo", "Desayuno")
 
@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity(), CalendarioAdapter.OnItemListener{
 
         }
 
-// Definir el OnClickListener para addFoodTextView2
+
         addFoodTextView2.setOnClickListener {
             val intent = Intent(this, AnhadirComidaActivity::class.java)
             intent.putExtra("tipo", "Almuerzo")
@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity(), CalendarioAdapter.OnItemListener{
 
         }
 
-// Definir el OnClickListener para addFoodTextView3
+
         addFoodTextView3.setOnClickListener {
             // Aquí colocas el código para abrir la AnhadirComidaActivity
             val intent = Intent(this, AnhadirComidaActivity::class.java)
@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity(), CalendarioAdapter.OnItemListener{
 
         }
 
-// Definir el OnClickListener para addFoodTextView4
+
         addFoodTextView4.setOnClickListener {
             // Aquí colocas el código para abrir la AnhadirComidaActivity
             val intent = Intent(this, AnhadirComidaActivity::class.java)
@@ -99,7 +99,7 @@ class MainActivity : AppCompatActivity(), CalendarioAdapter.OnItemListener{
             startMonthYear
         }
 
-        // Establecer el texto en el TextView
+
         monthYearText.text = monthYearTextString
 
         // Obtener los días de la semana actual
