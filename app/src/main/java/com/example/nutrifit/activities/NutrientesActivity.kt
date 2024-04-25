@@ -7,6 +7,8 @@ import android.widget.NumberPicker
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.nutrifit.R
+import com.example.nutrifit.pojo.Menu
+import com.google.firebase.auth.FirebaseAuth
 
 class NutrientesActivity : AppCompatActivity() {
 
@@ -18,6 +20,7 @@ class NutrientesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nutrientes)
         anhadirComidaActivity = AnhadirComidaActivity()
+
 
 
         val nombre = intent.getStringExtra("nombre")
@@ -59,6 +62,9 @@ class NutrientesActivity : AppCompatActivity() {
             cantidad = cantidadSeleccionada
             calorias = txtCalorias.text.toString().split(" ")[0].toDouble()
             proteinas = txtProteinas.text.toString().split(" ")[0].toDouble()
+
+
+
 
 
             val intent = Intent(this@NutrientesActivity, AnhadirComidaActivity::class.java).apply {

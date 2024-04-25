@@ -1,5 +1,6 @@
 package com.example.nutrifit.dbMenus
 
+import android.util.Log
 import com.example.nutrifit.pojo.Menu
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -11,11 +12,21 @@ object DatabaseManagerMenu {
     private val menusCollection = db.collection("menus")
     private val currentUserEmail = FirebaseAuth.getInstance().currentUser?.email
 
-    fun addMenu(menu: Menu, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
+    fun addMenu(
+        menu: Menu,
+        onSuccess: () -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
         db.collection("menus")
             .add(menu)
-            .addOnSuccessListener { onSuccess() }
-            .addOnFailureListener { e -> onFailure(e) }
+            .addOnSuccessListener { documentReference ->
+                Log.d("DatabaseManagerMenu", "Menu added with ID: ${documentReference.id}")
+                onSuccess()
+            }
+            .addOnFailureListener { e ->
+                Log.e("DatabaseManagerMenu", "Error adding menu", e)
+                onFailure(e)
+            }
     }
 
     fun getUserMenus(
