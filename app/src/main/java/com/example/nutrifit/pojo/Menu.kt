@@ -13,7 +13,7 @@ data class Menu(
     val unidad: String,
     val usuario: String,
     val tipo: String,
-    val fecha: LocalDate
+    val fecha:  String
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
@@ -23,7 +23,7 @@ data class Menu(
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
-        LocalDate.parse(parcel.readString())
+        parcel.readString()!!
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -34,7 +34,7 @@ data class Menu(
         parcel.writeString(unidad)
         parcel.writeString(usuario)
         parcel.writeString(tipo)
-        parcel.writeString(fecha.toString())
+        parcel.writeString(fecha)
     }
 
     override fun describeContents(): Int {

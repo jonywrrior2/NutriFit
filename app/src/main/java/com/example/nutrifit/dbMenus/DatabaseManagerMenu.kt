@@ -49,9 +49,8 @@ object DatabaseManagerMenu {
                         val tipo = menuData?.get("tipo") as String
                         val unidad = menuData?.get("unidad") as String
                         val fechaStr = menuData?.get("fecha") as String // Recuperar la fecha como String
-                        val fecha = LocalDate.parse(fechaStr)
                         val usuario = currentUserEmail ?: ""
-                        val menu = Menu(alimentos, cantidad, kcal, proteinas, unidad, usuario, tipo, fecha)
+                        val menu = Menu(alimentos, cantidad, kcal, proteinas, unidad, usuario, tipo, fechaStr)
 
                         menus.add(menu)
                     }

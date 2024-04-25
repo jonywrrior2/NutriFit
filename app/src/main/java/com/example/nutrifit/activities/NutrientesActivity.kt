@@ -2,13 +2,16 @@ package com.example.nutrifit.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.NumberPicker
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.nutrifit.R
+import com.example.nutrifit.dbMenus.DatabaseManagerMenu
 import com.example.nutrifit.pojo.Menu
 import com.google.firebase.auth.FirebaseAuth
+import java.time.LocalDate
 
 class NutrientesActivity : AppCompatActivity() {
 
@@ -61,17 +64,18 @@ class NutrientesActivity : AppCompatActivity() {
         guardarAlimentoButton.setOnClickListener {
 
             val comidaNutriente = txtNombre.text.toString()
-            cantidad = cantidadSeleccionada
-            calorias = txtCalorias.text.toString().split(" ")[0].toDouble()
-            proteinas = txtProteinas.text.toString().split(" ")[0].toDouble()
+            val calorias = txtCalorias.text.toString().split(" ")[0].toDouble()
+            val proteinas = txtProteinas.text.toString().split(" ")[0].toDouble()
+            val usuario = FirebaseAuth.getInstance().currentUser?.email ?: ""
+            val fechaStr = fecha ?: ""
 
-
+            val menu = Menu(comidaNutriente, cantidadSeleccionada.toInt(), calorias, proteinas, unidad!!, usuario, tipo!!, fechaStr)
 
 
 
             val intent = Intent(this@NutrientesActivity, AnhadirComidaActivity::class.java).apply {
                 putExtra("comidaNutriente", comidaNutriente)
-                putExtra("cantidad", cantidad)
+                putExtra("Cantidad", cantidadSeleccionada)
                 putExtra("calorias", calorias)
                 putExtra("proteinas", proteinas)
                 putExtra("unidad", unidad)
@@ -79,9 +83,9 @@ class NutrientesActivity : AppCompatActivity() {
                 putExtra("fechaSeleccionada", fecha)
             }
 
-
             startActivity(intent)
         }
+
 
 
 
@@ -103,6 +107,7 @@ class NutrientesActivity : AppCompatActivity() {
             val proteinas = (basep * cantidadSeleccionada / 50)
             txtCalorias.text = "$calorias kcal"
             txtProteinas.text = "$proteinas g"
+            Log.d("NutrientesActivity", "Valor seleccionado: $cantidadSeleccionada")
         }
 
         pickerCantidad.descendantFocusability = NumberPicker.FOCUS_BLOCK_DESCENDANTS
