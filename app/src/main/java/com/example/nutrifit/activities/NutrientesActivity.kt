@@ -50,6 +50,7 @@ class NutrientesActivity : AppCompatActivity() {
 
             val intent = Intent(this@NutrientesActivity, AnhadirComidaActivity::class.java).apply {
                 putExtra("tipo", tipo)
+                putExtra("fechaSeleccionada", fecha)
             }
 
             startActivity(intent)
@@ -75,6 +76,7 @@ class NutrientesActivity : AppCompatActivity() {
                 putExtra("proteinas", proteinas)
                 putExtra("unidad", unidad)
                 putExtra("tipo", tipo)
+                putExtra("fechaSeleccionada", fecha)
             }
 
 
