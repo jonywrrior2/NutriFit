@@ -15,7 +15,7 @@ import java.time.LocalDate
 class MainActivity : AppCompatActivity(), CalendarioAdapter.OnItemListener {
     private lateinit var monthYearText: TextView
     private lateinit var calendarRecyclerView: RecyclerView
-    private var selectedLongClickDate: LocalDate? = null
+    private var selectedLongClickDate: LocalDate? =  LocalDate.now()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
