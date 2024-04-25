@@ -75,7 +75,7 @@ class   AnhadirComidaActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable?) {}
         })
 
-        obtenerMenusDelUsuarioActual()
+        obtenerMenusDelUsuarioActual(selectedLongClickDate)
     }
 
     private fun actualizarComidasTextView(menus: List<Menu>) {
@@ -117,17 +117,17 @@ class   AnhadirComidaActivity : AppCompatActivity() {
     }
 
 
-     fun obtenerMenusDelUsuarioActual() {
-         val tipoComida = intent.getStringExtra("tipo")
+    private fun obtenerMenusDelUsuarioActual(selectedDate: LocalDate?) {
+        val tipoComida = intent.getStringExtra("tipo")
         DatabaseManagerMenu.getUserMenus(
             onSuccess = { menus ->
+                // Filtrar los menús por tipo de comida y fecha seleccionada
+                val menusFiltrados = menus.filter { it.tipo == tipoComida && it.fecha == selectedDate }
 
-                val menusFiltrados = menus.filter { it.tipo.equals(tipoComida) }
-
+                // Actualizar la vista con los menús filtrados
                 actualizarComidasTextView(menusFiltrados)
             },
             onFailure = { exception ->
-
                 Log.e("DatabaseManagerMenu", "Error al obtener los menús del usuario actual: $exception")
             }
         )

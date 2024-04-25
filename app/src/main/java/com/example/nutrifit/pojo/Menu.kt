@@ -3,6 +3,7 @@ package com.example.nutrifit.pojo
 
 import android.os.Parcel
 import android.os.Parcelable
+import java.time.LocalDate
 
 data class Menu(
     val alimentos: String,
@@ -11,7 +12,8 @@ data class Menu(
     val proteinas: Double,
     val unidad: String,
     val usuario: String,
-    val tipo: String
+    val tipo: String,
+    val fecha: LocalDate
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
@@ -20,7 +22,8 @@ data class Menu(
         parcel.readDouble(),
         parcel.readString()!!,
         parcel.readString()!!,
-        parcel.readString()!!
+        parcel.readString()!!,
+        LocalDate.parse(parcel.readString())
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -31,6 +34,7 @@ data class Menu(
         parcel.writeString(unidad)
         parcel.writeString(usuario)
         parcel.writeString(tipo)
+        parcel.writeString(fecha.toString())
     }
 
     override fun describeContents(): Int {

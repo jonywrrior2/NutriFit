@@ -4,7 +4,7 @@ import android.util.Log
 import com.example.nutrifit.pojo.Menu
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.QuerySnapshot
+import java.time.LocalDate
 
 object DatabaseManagerMenu {
 
@@ -48,8 +48,10 @@ object DatabaseManagerMenu {
                         val proteinas = (menuData?.get("proteinas") as Long).toDouble()
                         val tipo = menuData?.get("tipo") as String
                         val unidad = menuData?.get("unidad") as String
+                        val fechaStr = menuData?.get("fecha") as String // Recuperar la fecha como String
+                        val fecha = LocalDate.parse(fechaStr)
                         val usuario = currentUserEmail ?: ""
-                        val menu = Menu(alimentos, cantidad, kcal, proteinas, unidad, usuario, tipo)
+                        val menu = Menu(alimentos, cantidad, kcal, proteinas, unidad, usuario, tipo, fecha)
 
                         menus.add(menu)
                     }
