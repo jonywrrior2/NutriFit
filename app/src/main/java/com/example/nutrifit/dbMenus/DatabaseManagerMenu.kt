@@ -42,6 +42,7 @@ object DatabaseManagerMenu {
                         // Excluir el campo "usuario" antes de mapear el documento a la clase Menu
                         val menuData = document.data?.toMutableMap()
                         menuData?.remove("usuario")
+                        menuData?.remove("stability")
                         val alimentos = menuData?.get("alimento") as String
                         val cantidad = (menuData?.get("cantidad") as Long).toInt()
                         val kcal = (menuData?.get("kcal") as Long).toDouble()

@@ -17,12 +17,12 @@ class NutrientesActivity : AppCompatActivity() {
 
     private lateinit var guardarAlimentoButton: Button
     private lateinit var volverbutton: Button
-    private lateinit var anhadirComidaActivity: AnhadirComidaActivity
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nutrientes)
-        anhadirComidaActivity = AnhadirComidaActivity()
+
 
 
 
@@ -71,7 +71,14 @@ class NutrientesActivity : AppCompatActivity() {
 
             val menu = Menu(comidaNutriente, cantidadSeleccionada.toInt(), calorias, proteinas, unidad!!, usuario, tipo!!, fechaStr)
 
+           /*  DatabaseManagerMenu.addMenu(menu,
+                onSuccess = {
 
+                },
+                onFailure = { exception ->
+
+                }
+            ) */
 
             val intent = Intent(this@NutrientesActivity, AnhadirComidaActivity::class.java).apply {
                 putExtra("comidaNutriente", comidaNutriente)
