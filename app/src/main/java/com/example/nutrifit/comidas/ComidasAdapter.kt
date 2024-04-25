@@ -45,6 +45,7 @@ class ComidasAdapter(private val context: Context, private val itemClickListener
                 putExtra("cantidad", comida.cantidad)
                 putExtra("unidad", comida.unidad)
                 putExtra("tipo", (context as AnhadirComidaActivity).tipo)
+                putExtra("fechaSeleccionada", (context as AnhadirComidaActivity).selectedLongClickDateStr)
             }
             context.startActivity(intent)
         }

@@ -27,6 +27,7 @@ class   AnhadirComidaActivity : AppCompatActivity() {
     private lateinit var listaComidaRecyclerView: RecyclerView
     private lateinit var adapterMenu: ComidasAdapterMenu
     var tipo: String? = null
+    var selectedLongClickDateStr: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +36,7 @@ class   AnhadirComidaActivity : AppCompatActivity() {
         tipo = intent.getStringExtra("tipo")
 
 
-        val selectedLongClickDateStr = intent.getStringExtra("fechaSeleccionada")
+        selectedLongClickDateStr = intent.getStringExtra("fechaSeleccionada")
         val selectedLongClickDate: LocalDate? = selectedLongClickDateStr?.let { LocalDate.parse(it) }
 
 
@@ -108,6 +109,7 @@ class   AnhadirComidaActivity : AppCompatActivity() {
             putExtra("cantidad", alimento.cantidad)
             putExtra("unidad", alimento.unidad)
             putExtra("tipo", tipo)
+            putExtra("fechaSeleccionada", selectedLongClickDateStr)
         }
         startActivity(intent)
 

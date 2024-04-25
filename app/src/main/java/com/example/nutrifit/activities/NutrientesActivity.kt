@@ -29,6 +29,7 @@ class NutrientesActivity : AppCompatActivity() {
         var cantidad = intent.getDoubleExtra("cantidad", 0.0)
         val unidad = intent.getStringExtra("unidad")
         val tipo = intent.getStringExtra("tipo")
+        val fecha = intent.getStringExtra("fechaSeleccionada")
 
 
         var cantidadSeleccionada = cantidad
