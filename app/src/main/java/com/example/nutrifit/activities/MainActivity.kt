@@ -39,24 +39,28 @@ class MainActivity : AppCompatActivity(), CalendarioAdapter.OnItemListener {
         addFoodTextView1.setOnClickListener {
             val intent = Intent(this, AnhadirComidaActivity::class.java)
             intent.putExtra("tipo", "Desayuno")
+            intent.putExtra("fechaSeleccionada", selectedLongClickDate?.toString())
             startActivity(intent)
         }
 
         addFoodTextView2.setOnClickListener {
             val intent = Intent(this, AnhadirComidaActivity::class.java)
             intent.putExtra("tipo", "Almuerzo")
+            intent.putExtra("fechaSeleccionada", selectedLongClickDate?.toString())
             startActivity(intent)
         }
 
         addFoodTextView3.setOnClickListener {
             val intent = Intent(this, AnhadirComidaActivity::class.java)
             intent.putExtra("tipo", "Merienda")
+            intent.putExtra("fechaSeleccionada", selectedLongClickDate?.toString())
             startActivity(intent)
         }
 
         addFoodTextView4.setOnClickListener {
             val intent = Intent(this, AnhadirComidaActivity::class.java)
             intent.putExtra("tipo", "Cena")
+            intent.putExtra("fechaSeleccionada", selectedLongClickDate?.toString())
             startActivity(intent)
         }
     }

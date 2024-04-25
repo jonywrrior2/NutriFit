@@ -17,6 +17,7 @@ import com.example.nutrifit.dbMenus.DatabaseManagerMenu
 import com.example.nutrifit.pojo.Alimento
 import com.example.nutrifit.pojo.Menu
 import com.google.android.material.textfield.TextInputEditText
+import java.time.LocalDate
 
 class   AnhadirComidaActivity : AppCompatActivity() {
 
@@ -34,6 +35,8 @@ class   AnhadirComidaActivity : AppCompatActivity() {
         tipo = intent.getStringExtra("tipo")
 
 
+        val selectedLongClickDateStr = intent.getStringExtra("fechaSeleccionada")
+        val selectedLongClickDate: LocalDate? = selectedLongClickDateStr?.let { LocalDate.parse(it) }
 
 
         // Inicializar views
