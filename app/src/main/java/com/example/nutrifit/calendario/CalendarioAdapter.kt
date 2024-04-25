@@ -34,8 +34,7 @@ class CalendarioAdapter(private val days: ArrayList<LocalDate>, private val onIt
     }
 
     interface OnItemListener {
-
-
         fun onItemClick(position: Int, date: LocalDate)
+
     }
 }
