@@ -6,12 +6,12 @@ import android.util.Log
 import android.widget.Button
 import android.widget.NumberPicker
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.nutrifit.R
 import com.example.nutrifit.dbMenus.DatabaseManagerMenu
 import com.example.nutrifit.pojo.Menu
 import com.google.firebase.auth.FirebaseAuth
-import java.time.LocalDate
 
 class NutrientesActivity : AppCompatActivity() {
 
@@ -71,14 +71,19 @@ class NutrientesActivity : AppCompatActivity() {
 
             val menu = Menu(comidaNutriente, cantidadSeleccionada.toInt(), calorias, proteinas, unidad!!, usuario, tipo!!, fechaStr)
 
-           /*  DatabaseManagerMenu.addMenu(menu,
+            DatabaseManagerMenu.addMenu(
+                menu,
                 onSuccess = {
-
+                    Log.d("DatabaseManagerMenu", "Menu added successfully")
+                    Toast.makeText(this, "Menu added successfully", Toast.LENGTH_SHORT).show()
                 },
                 onFailure = { exception ->
 
+                    Log.e("DatabaseManagerMenu", "Error adding menu", exception)
+                    Toast.makeText(this, "Error adding menu: ${exception.message}", Toast.LENGTH_SHORT).show()
                 }
-            ) */
+            )
+
 
             val intent = Intent(this@NutrientesActivity, AnhadirComidaActivity::class.java).apply {
                 putExtra("comidaNutriente", comidaNutriente)
@@ -124,6 +129,8 @@ class NutrientesActivity : AppCompatActivity() {
         txtCalorias.text = "$calorias / kcal"
         txtProteinas.text = "$proteinas g"
     }
+
+
 
 
 }

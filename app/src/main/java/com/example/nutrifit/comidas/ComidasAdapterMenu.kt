@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nutrifit.R
@@ -30,6 +31,8 @@ class ComidasAdapterMenu(private val context: Context, private var menus: List<M
         holder.textViewCantidad.text = context.getString(R.string.cantidad_template, currentItem.cantidad)+ " ${currentItem.unidad}"
         holder.textViewKcal.text = context.getString(R.string.kcal_template, currentItem.kcal)+ "/kcal"
         holder.textViewProteinas.text = context.getString(R.string.proteinas_template, currentItem.proteinas) + " g"
+
+
     }
 
     override fun getItemCount() = menus.size
