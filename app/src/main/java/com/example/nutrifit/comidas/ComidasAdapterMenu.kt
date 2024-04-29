@@ -1,13 +1,17 @@
 package com.example.nutrifit.comidas
 
+import android.app.AlertDialog
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nutrifit.R
+import com.example.nutrifit.dbMenus.DatabaseManagerMenu
 import com.example.nutrifit.pojo.Menu
 
 class ComidasAdapterMenu(private val context: Context, private var menus: List<Menu>) : RecyclerView.Adapter<ComidasAdapterMenu.ComidaViewHolder>() {
@@ -17,6 +21,7 @@ class ComidasAdapterMenu(private val context: Context, private var menus: List<M
         val textViewCantidad: TextView = itemView.findViewById(R.id.textViewCantidad)
         val textViewKcal: TextView = itemView.findViewById(R.id.textViewKcal)
         val textViewProteinas: TextView = itemView.findViewById(R.id.textViewProteinas)
+        val eliminarButton : ImageButton = itemView.findViewById(R.id.borrarMenu)
 
     }
 
@@ -31,6 +36,32 @@ class ComidasAdapterMenu(private val context: Context, private var menus: List<M
         holder.textViewCantidad.text = context.getString(R.string.cantidad_template, currentItem.cantidad)+ " ${currentItem.unidad}"
         holder.textViewKcal.text = context.getString(R.string.kcal_template, currentItem.kcal)+ "/kcal"
         holder.textViewProteinas.text = context.getString(R.string.proteinas_template, currentItem.proteinas) + " g"
+
+        holder.eliminarButton.setOnClickListener {
+            AlertDialog.Builder(context)
+                .setTitle("¿Desea eliminar este alimento?")
+                .setMessage("Esta acción no se puede deshacer.")
+                .setPositiveButton("Aceptar") { dialog, _ ->
+
+                    menus[position].let { menu ->
+                        DatabaseManagerMenu.eliminarMenu(menu,
+                            onSuccess = {
+                                Toast.makeText(context, "Alimento borrado con exito", Toast.LENGTH_SHORT).show()
+                                notifyDataSetChanged()
+                            },
+                            onFailure = { exception ->
+                                Toast.makeText(context, "Error al eliminar el alimento", Toast.LENGTH_SHORT).show()
+                            })
+                    }
+                    dialog.dismiss()
+                }
+                .setNegativeButton("Cancelar") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .show()
+        }
+
+
 
 
     }

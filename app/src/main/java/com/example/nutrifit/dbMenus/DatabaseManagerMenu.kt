@@ -62,5 +62,46 @@
             }
         }
 
+        fun eliminarMenu(
+            menu: Menu,
+            onSuccess: () -> Unit,
+            onFailure: (Exception) -> Unit
+        ) {
+            // Referencia al documento del menú a eliminar
+            val menuDocument = menusCollection
+                .whereEqualTo("usuario", menu.usuario)
+                .whereEqualTo("alimento", menu.alimentos)
+                .whereEqualTo("cantidad", menu.cantidad)
+                .whereEqualTo("kcal", menu.kcal)
+                .whereEqualTo("proteinas", menu.proteinas)
+                .whereEqualTo("unidad", menu.unidad)
+                .whereEqualTo("tipo", menu.tipo)
+                .whereEqualTo("fecha", menu.fecha)
+
+            // Eliminar el menú
+            menuDocument.get()
+                .addOnSuccessListener { documents ->
+                    // Si se encontró el documento del menú
+                    if (!documents.isEmpty) {
+                        val document = documents.documents[0]
+                        document.reference.delete()
+                            .addOnSuccessListener {
+                                Log.d("DatabaseManagerMenu", "Menu deleted successfully")
+                                onSuccess()
+                            }
+                            .addOnFailureListener { e ->
+                                Log.e("DatabaseManagerMenu", "Error deleting menu", e)
+                                onFailure(e)
+                            }
+                    } else {
+                        // Si no se encontró el documento del menú
+                        onFailure(Exception("Menu not found"))
+                    }
+                }
+                .addOnFailureListener { e ->
+                    Log.e("DatabaseManagerMenu", "Error fetching menu document", e)
+                    onFailure(e)
+                }
+        }
 
     }
