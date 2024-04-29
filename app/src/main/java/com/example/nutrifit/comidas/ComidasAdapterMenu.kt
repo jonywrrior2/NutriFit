@@ -16,6 +16,7 @@ class ComidasAdapterMenu(private val context: Context, private var menus: List<M
         val textViewCantidad: TextView = itemView.findViewById(R.id.textViewCantidad)
         val textViewKcal: TextView = itemView.findViewById(R.id.textViewKcal)
         val textViewProteinas: TextView = itemView.findViewById(R.id.textViewProteinas)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ComidaViewHolder {

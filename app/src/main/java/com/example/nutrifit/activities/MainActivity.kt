@@ -75,6 +75,7 @@ class MainActivity : AppCompatActivity(), CalendarioAdapter.OnItemListener {
             "$startMonthYear / $endMonthYear"
         } else {
             startMonthYear
+
         }
 
         monthYearText.text = monthYearTextString
@@ -85,6 +86,8 @@ class MainActivity : AppCompatActivity(), CalendarioAdapter.OnItemListener {
         val layoutManager = GridLayoutManager(applicationContext, 7)
         calendarRecyclerView.layoutManager = layoutManager
         calendarRecyclerView.adapter = calendarAdapter
+
+
     }
 
     fun previousWeekAction(view: View?) {

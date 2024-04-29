@@ -3,6 +3,7 @@ package com.example.nutrifit.pojo
 
 import android.os.Parcel
 import android.os.Parcelable
+import java.io.Serializable
 import java.time.LocalDate
 
 data class Menu(
@@ -14,43 +15,4 @@ data class Menu(
     val usuario: String,
     val tipo: String,
     val fecha:  String
-) : Parcelable {
-    constructor(parcel: Parcel) : this(
-        parcel.readString()!!,
-        parcel.readInt(),
-        parcel.readDouble(),
-        parcel.readDouble(),
-        parcel.readString()!!,
-        parcel.readString()!!,
-        parcel.readString()!!,
-        parcel.readString()!!
-    )
-
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(alimentos)
-        parcel.writeInt(cantidad)
-        parcel.writeDouble(kcal)
-        parcel.writeDouble(proteinas)
-        parcel.writeString(unidad)
-        parcel.writeString(usuario)
-        parcel.writeString(tipo)
-        parcel.writeString(fecha)
-    }
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<Menu> {
-        override fun createFromParcel(parcel: Parcel): Menu {
-            return Menu(parcel)
-        }
-
-        override fun newArray(size: Int): Array<Menu?> {
-            return arrayOfNulls(size)
-        }
-    }
-}
-
-
-
+) : Serializable

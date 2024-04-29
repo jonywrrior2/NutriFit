@@ -105,13 +105,13 @@
         app:cardCornerRadius="8dp">
 
         <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/listaComida"
+            android:id="@+id/listaComida"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:textColor="@color/black"
             android:hint="@string/aun_no_ha_a_adido_ninguna_comida"
-             />
+            android:padding="16dp"
+            android:textColor="@color/black" />
+
 
     </androidx.cardview.widget.CardView>
 
