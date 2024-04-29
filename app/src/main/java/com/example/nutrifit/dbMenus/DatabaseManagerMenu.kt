@@ -67,7 +67,7 @@
             onSuccess: () -> Unit,
             onFailure: (Exception) -> Unit
         ) {
-            // Referencia al documento del menú a eliminar
+
             val menuDocument = menusCollection
                 .whereEqualTo("usuario", menu.usuario)
                 .whereEqualTo("alimento", menu.alimentos)
@@ -78,10 +78,10 @@
                 .whereEqualTo("tipo", menu.tipo)
                 .whereEqualTo("fecha", menu.fecha)
 
-            // Eliminar el menú
+
             menuDocument.get()
                 .addOnSuccessListener { documents ->
-                    // Si se encontró el documento del menú
+
                     if (!documents.isEmpty) {
                         val document = documents.documents[0]
                         document.reference.delete()
@@ -94,7 +94,7 @@
                                 onFailure(e)
                             }
                     } else {
-                        // Si no se encontró el documento del menú
+
                         onFailure(Exception("Menu not found"))
                     }
                 }
