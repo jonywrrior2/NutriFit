@@ -10,10 +10,12 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nutrifit.R
+import com.example.nutrifit.activities.AnhadirComidaActivity
 import com.example.nutrifit.dbMenus.DatabaseManagerMenu
 import com.example.nutrifit.pojo.Menu
+import java.time.LocalDate
 
-class ComidasAdapterMenu(private val context: Context, private var menus: List<Menu>) : RecyclerView.Adapter<ComidasAdapterMenu.ComidaViewHolder>() {
+class ComidasAdapterMenu(private val context: Context, private var menus: List<Menu>, private val anhadirComidaActivity: AnhadirComidaActivity) : RecyclerView.Adapter<ComidasAdapterMenu.ComidaViewHolder>() {
 
     inner class ComidaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textViewAlimentos: TextView = itemView.findViewById(R.id.textViewAlimentos)
@@ -29,10 +31,10 @@ class ComidasAdapterMenu(private val context: Context, private var menus: List<M
         return ComidaViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: ComidaViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ComidaViewHolder,     position: Int) {
         val currentItem = menus[position]
         holder.textViewAlimentos.text = context.getString(R.string.alimentos_template, currentItem.alimentos)
-        holder.textViewCantidad.text = context.getString(R.string.cantidad_template, currentItem.cantidad)+ " ${currentItem.unidad}"
+        holder.textViewCantidad.text = context.getString    (R.string.cantidad_template, currentItem.cantidad)+ " ${currentItem.unidad}"
         holder.textViewKcal.text = context.getString(R.string.kcal_template, currentItem.kcal)+ "/kcal"
         holder.textViewProteinas.text = context.getString(R.string.proteinas_template, currentItem.proteinas) + " g"
 
@@ -47,6 +49,9 @@ class ComidasAdapterMenu(private val context: Context, private var menus: List<M
                             onSuccess = {
                                 Toast.makeText(context, "Alimento borrado con exito", Toast.LENGTH_SHORT).show()
                                 notifyDataSetChanged()
+                                val selectedDateStr = menus[position].fecha // Obtener la fecha del menú eliminado
+                                val selectedDate = selectedDateStr?.let { LocalDate.parse(it) }
+                               anhadirComidaActivity.obtenerMenusDelUsuarioActual(selectedDate)
                             },
                             onFailure = { exception ->
                                 Toast.makeText(context, "Error al eliminar el alimento", Toast.LENGTH_SHORT).show()

@@ -51,7 +51,8 @@ class   AnhadirComidaActivity : AppCompatActivity() {
             comidasRecyclerView.visibility = View.GONE
         }
 
-        adapterMenu = ComidasAdapterMenu(this, emptyList())
+        adapterMenu = ComidasAdapterMenu(this, emptyList(), this)
+
 
 
 
@@ -117,7 +118,7 @@ class   AnhadirComidaActivity : AppCompatActivity() {
     }
 
 
-    private fun obtenerMenusDelUsuarioActual(selectedDate: LocalDate?) {
+     fun obtenerMenusDelUsuarioActual(selectedDate: LocalDate?) {
         val tipoComida = intent.getStringExtra("tipo")
         DatabaseManagerMenu.getUserMenus(
             onSuccess = { menus ->
